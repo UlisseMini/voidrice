@@ -3,6 +3,21 @@
 # general
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi"
+# aliases for finding files
+alias locate="find ~/ | grep"
+alias rlocate="sudo find / 2>/dev/null | grep"
+
+# brightness not working on my macbook, this is my workaround.
+function brightness() {
+	sudo bash -c "echo '$1' > /sys/class/backlight/intel_backlight/brightness" &&
+		cat "/sys/class/backlight/intel_backlight/brightness"
+}
+
+
+# youtube-dl
+alias yt="youtube-dl --add-metadata -ic" # Download video link
+alias yta="yt -x -f bestaudio/best" # Download only audio
+alias YT="youtube-viewer" # Youtube streaming from the commandline!
 
 # colors!
 alias ls="ls --color=auto"
@@ -13,12 +28,19 @@ alias ccat="highlight --out-format=ansi"
 
 ## DOTFILES ##
 function vrc() {
-	cd ~/dotfiles 2>/dev/null &&
-		$EDITOR . &&
+	cd ~/ 2>/dev/null &&
+		$EDITOR -p .vimrc &&
 		cd - >/dev/null
 }
 
-## DOCKER ##
+# i'm usually making aliases. cd is there so i can :tabedit bashrc easily.
+function brc() {
+	cd ~/ &&
+		vim .bash_aliases &&
+		cd - >/dev/null
+}
+
+## Docker ##
 function dockerstopall() {
 	docker stop $(docker ps -q)
 }
@@ -26,7 +48,7 @@ function dockerstopall() {
 function dockerclean() {
 	# sometimes containers will not be running
 	# if thats the case we don't want to see the
-	# error message
+	# "docker stop" requires at least 1 argument. error message.
 	dockerstopall 2>/dev/null
 
 	# delete all the containers (will prompt user)
