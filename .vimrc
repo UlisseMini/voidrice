@@ -19,10 +19,16 @@ call plug#end()
 	syntax on
 	set encoding=utf-8
 	set number
+
+	" tab settings
 	set tabstop=4
 	set shiftwidth=4
-" allow the mouse to be used (more user friendly)
-	set mouse=a
+
+	" disable status bar
+	set laststatus=0
+
+" uncomment if you want the mouse to be useable inside vim
+"	set mouse=a
 
 " don't allow colorschemes to change the background
 	autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
@@ -34,7 +40,7 @@ call plug#end()
 " Destraction free mode
 	noremap <C-g> :set number!<CR>i<esc>
 
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+" Splits open at the bottom and right
 	set splitbelow splitright
 
 " Shortcutting split navigation, saving a keypress:
@@ -46,7 +52,7 @@ call plug#end()
 " Replace all is aliased to S.
 	nnoremap S :%s//<Left>
 
-" Copy selected text to system clipboard :D
+" Copy selected text to system clipboard using xclip
 	let g:clipboard = {
 		   \   'name': 'xclip',
 		   \   'copy': {
@@ -60,30 +66,23 @@ call plug#end()
 		   \   'cache_enabled': 1,
 		   \ }
 
-" Remaps to make it easier
 	vnoremap <C-c> "+y
 	map <C-p> "+p
-" shortcuts for speeeeed
+
+" Lets you shift <movement> (idea from parth's dotfiles)
 	nnoremap H 0
 	nnoremap L $
 	nnoremap J G
 	nnoremap K gg
 
-" my stuff
-	" Lets you shift <movement> (idea from parth's dotfiles)
-	nnoremap H 0
-	nnoremap L $
-	nnoremap J G
-	nnoremap K gg
-
-	" Tweaks for file browsing
+" Tweaks for file browsing
 	let g:netrw_banner=0 " disable anoying banner
 	let g:netrw_liststyle=3 " tree view
 
-	" tabs for diferent languages
+" Tabs settings for diferent languages
 	autocmd Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 	autocmd Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd Filetype asm set syntax=nasm
 
-	" disable gay ass auto commenting
+" Disable auto commenting
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
