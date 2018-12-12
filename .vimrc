@@ -46,9 +46,23 @@ call plug#end()
 " Replace all is aliased to S.
 	nnoremap S :%s//<Left>
 
-" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
+" Copy selected text to system clipboard :D
+	let g:clipboard = {
+		   \   'name': 'xclip',
+		   \   'copy': {
+		   \      '+': 'xclip -i -selection clipboard',
+		   \      '*': 'xclip -i -selection clipboard',
+		   \    },
+		   \   'paste': {
+		   \      '+': 'xclip -i -selection clipboard',
+		   \      '*': 'xclip -i -selection clipboard',
+		   \   },
+		   \   'cache_enabled': 1,
+		   \ }
+
+" Remaps to make it easier
 	vnoremap <C-c> "+y
-	map <C-p> "+P
+	map <C-p> "+p
 " shortcuts for speeeeed
 	nnoremap H 0
 	nnoremap L $
