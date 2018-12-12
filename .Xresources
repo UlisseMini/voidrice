@@ -17,7 +17,7 @@
 *.color15: #ebdbb2
 !! Transparency (0-255):
 *.alpha: 150
-!! Lukes transparency, i like 150 more.
+!! Luke's transparency, i like 150 more.
 !!*.alpha: 230
 !! Set a default font and font size as below:
 !! *.font: Monospace-14;

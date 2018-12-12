@@ -3,9 +3,16 @@
 # general
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi"
+
 # aliases for finding files
 alias locate="find ~/ | grep"
 alias rlocate="sudo find / 2>/dev/null | grep"
+
+# editing
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+alias nvim="$EDITOR"
 
 # brightness not working on my macbook, this is my workaround.
 function brightness() {
