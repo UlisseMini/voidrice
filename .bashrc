@@ -29,12 +29,6 @@ source /home/$USER/.shortcuts.sh
 
 # golang
 export GOPATH=/home/$USER
-export PATH=$PATH:/home/peep/bin
+export PATH=$PATH:/home/$USER/bin
+export CDPATH=$CDPATH:/home/$USER/src/
 source /home/$USER/.shortcuts.sh
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/peep/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/home/peep/Downloads/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/peep/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/home/peep/Downloads/google-cloud-sdk/completion.bash.inc'; fi
-source /home/peep/.shortcuts.sh
