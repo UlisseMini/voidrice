@@ -4,6 +4,12 @@
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi"
 
+# golang aliases
+alias gob="go build"
+alias sgo="cd /lib/go/src/"
+alias gos="cd ~/src/"
+alias gop="cd ~/src/github.com/UlisseMini/"
+
 # aliases for finding files
 alias locate="find ~/ | grep"
 alias rlocate="sudo find / 2>/dev/null | grep"
