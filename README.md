@@ -11,8 +11,6 @@ There are my dotfiles! The name of the repo, "voidrice", came from the fact they
 + ranger (see full documentation [here](.config/ranger/luke_ranger_readme.md))
 + ~~mutt/msmtp/offlineimap~~ Now moved to [LukeSmithxyz/mutt-wizard](https://github.com/LukeSmithxyz/mutt-wizard)
 + calcurse
-+ ncmpcpp and mpd (my main music player)
-+ mpv
 + neofetch
 + And many little scripts I use filed in the `~/.scripts/` directory
 
