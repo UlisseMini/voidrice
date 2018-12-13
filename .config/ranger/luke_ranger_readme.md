@@ -65,15 +65,6 @@ Press any "verb" followed by any "argument" to perform a folder operation. "gd" 
 	+ C -- rotates an image (requires imagemagick)
 	+ F -- flips an image (requires imagemagick)
 	+ TR -- add transparency to image file
-+ mpd/mpc shortcuts
-	+ MS -- Start mpd
-	+ MK -- kill mpd
-	+ MN -- Start playing selected song/folder now
-	+ Ma -- Enqueue selected song/folder
-	+ Mp -- Pause
-	+ Mn -- Next track
-	+ Mb -- Previous track
-	+ Mo -- Restart track
 + Audio tagging with eye3D:
 	+ Ta -- change artist name
 	+ TA -- change album name

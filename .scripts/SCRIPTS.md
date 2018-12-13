@@ -22,14 +22,6 @@ status. Colors indicate different levels of charge.
 i3blocks module for use with mutt-wizard. Shows unread mail and if
 `mailsync.sh` is running.
 
-### `i3mpd`
-
-i3blocks module. Shows current song; if paused, name will be grayed and italic.
-
-### `i3mpdupdate`
-
-A daemon running by default that will update the i3mpd block on mpd change.
-
 ### `i3pacman`
 
 i3blocks module. Detects new installable upgrades. Only works if you use

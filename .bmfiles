@@ -17,6 +17,4 @@ cfn	~/.config/newsboat/config
 cfA	~/.asoundrc
 cfmb	~/.config/ncmpcpp/bindings
 cfmc	~/.config/ncmpcpp/config
-cfmpd	~/.config/mpd/mpd.conf
-cfM	~/.config/mpd/mpd.conf
 er	~/.referbib

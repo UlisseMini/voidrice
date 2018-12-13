@@ -7,12 +7,13 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
-Plug 'morhetz/gruvbox'
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
+Plug 'morhetz/gruvbox'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " Some basics:
@@ -37,6 +38,10 @@ call plug#end()
 	let g:go_doc_keywordprg_enabled = 0
 	let g:go_template_file = "default.go"
 	let g:go_template_test_file = "default_test.go"
+
+	" Autocompetion from source code
+	let g:go_gocode_propose_source = 1
+
 
 " uncomment if you want the mouse to be useable inside vim
 "	set mouse=a
