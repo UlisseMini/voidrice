@@ -7,10 +7,11 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/morhetz/gruvbox.git'
+Plug 'morhetz/gruvbox'
 Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'jreybert/vimagit'
 Plug 'vimwiki/vimwiki'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 " Some basics:
@@ -19,6 +20,7 @@ call plug#end()
 	syntax on
 	set encoding=utf-8
 	set number
+	set history=1000
 
 	" tab settings
 	set tabstop=4
@@ -26,6 +28,8 @@ call plug#end()
 
 	" disable status bar
 	set laststatus=0
+	" enable deoplete
+	let g:deoplete#enable_at_startup = 1
 
 " uncomment if you want the mouse to be useable inside vim
 "	set mouse=a
@@ -38,7 +42,7 @@ call plug#end()
 	colorscheme gruvbox
 
 " Destraction free mode
-	noremap <C-g> :set number!<CR>i<esc>
+	noremap <C-g> :set number!<CR>:<BS>
 
 " Splits open at the bottom and right
 	set splitbelow splitright

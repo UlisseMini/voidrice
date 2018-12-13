@@ -3,12 +3,14 @@
 # general
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi"
+alias g="git"
 
 # golang aliases
 alias gob="go build"
 alias sgo="cd /lib/go/src/"
 alias gos="cd ~/src/"
 alias gop="cd ~/src/github.com/UlisseMini/"
+alias got="go test -race"
 
 # aliases for finding files
 alias locate="find ~/ | grep"
