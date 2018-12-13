@@ -12,6 +12,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimwiki/vimwiki'
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'SirVer/ultisnips'
 call plug#end()
 
 " Some basics:
@@ -28,8 +29,14 @@ call plug#end()
 
 	" disable status bar
 	set laststatus=0
-	" enable deoplete
+
+" deoplete settings
 	let g:deoplete#enable_at_startup = 1
+
+" vim-go settings
+	let g:go_doc_keywordprg_enabled = 0
+	let g:go_template_file = "default.go"
+	let g:go_template_test_file = "default_test.go"
 
 " uncomment if you want the mouse to be useable inside vim
 "	set mouse=a
