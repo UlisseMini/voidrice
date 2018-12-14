@@ -231,7 +231,7 @@ is installed.
 .LIST OFF
 .HEADING 2 "Audio"
 .PP
-I use ncmpcpp as a music player, which is a front end for mpd.
+I Don't use ncmpcpp as a music player, which is a front end for mpd.
 .LI
 .ITEM
 \f(CWMod+m\fP \(en ncmpcpp music player

@@ -29,6 +29,8 @@ source /home/$USER/.shortcuts.sh
 
 # golang
 export GOPATH=/home/$USER
+export GOBIN=/home/$USER/bin
+# path
 export PATH=$PATH:/home/$USER/bin
 export CDPATH=$CDPATH:/home/$USER/src/
 source /home/$USER/.shortcuts.sh
