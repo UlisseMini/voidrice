@@ -30,6 +30,8 @@ source /home/$USER/.shortcuts.sh
 # golang
 export GOPATH=/home/$USER
 export GOBIN=/home/$USER/bin
+export CGO_ENABLED=0 # static linking!
+
 # path
 export PATH=$PATH:/home/$USER/bin
 export CDPATH=$CDPATH:/home/$USER/src/
