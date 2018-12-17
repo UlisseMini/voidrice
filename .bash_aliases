@@ -45,8 +45,8 @@ alias ccat="highlight --out-format=ansi"
 
 ## DOTFILES ##
 function vrc() {
-	cd ~/ 2>/dev/null &&
-		$EDITOR -p .vimrc &&
+	cd ~/.config/nvim/ 2>/dev/null &&
+		$EDITOR -p init.vim &&
 		cd - >/dev/null
 }
 

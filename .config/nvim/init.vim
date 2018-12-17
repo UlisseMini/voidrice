@@ -51,7 +51,8 @@ call plug#end()
 
 " colorscheme
 	set background=dark
-	colorscheme gruvbox
+	" try and load the colorscheme but ignore errors
+	silent! colorscheme gruvbox
 
 " Destraction free mode
 	noremap <C-g> :set number!<CR>:<BS>
