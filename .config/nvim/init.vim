@@ -42,6 +42,8 @@ call plug#end()
 	" Autocompetion from source code
 	let g:go_gocode_propose_source = 1
 
+	" Find where a variable is defined with ctrl + g
+	noremap <C-g> :GoDef<CR>:<BS>
 
 " uncomment if you want the mouse to be useable inside vim
 "	set mouse=a
@@ -53,9 +55,6 @@ call plug#end()
 	set background=dark
 	" try and load the colorscheme but ignore errors
 	silent! colorscheme gruvbox
-
-" Destraction free mode
-	noremap <C-g> :set number!<CR>:<BS>
 
 " Splits open at the bottom and right
 	set splitbelow splitright
