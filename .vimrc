@@ -98,6 +98,7 @@ call plug#end()
 " Tabs settings for diferent languages
 	autocmd Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 	autocmd Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
+	autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
 	autocmd Filetype asm set syntax=nasm
 
 " Disable auto commenting
