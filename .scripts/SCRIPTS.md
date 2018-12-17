@@ -159,7 +159,7 @@ another keyboard setup, edit this fine.
 For updating bash and ranger shortcuts. Reads `~/.key_directories` and
 `~/.key_files` for pairs of keypresses and directories and files, then
 autoproduces bash aliases and ranger shortcuts for them which output to
-`~/.shortcuts` and `~/.config/ranger/shortcuts.conf` respectively. These are
+`~/.shortcuts.sh` and `~/.config/ranger/shortcuts.conf` respectively. These are
 read automatically by my bash and ranger configs. You don't have to run this
 script manually though, as it's run by vim whenever you edit one of the
 `~/.key_*` files.

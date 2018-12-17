@@ -28,11 +28,10 @@ source /home/$USER/.bash_aliases
 source /home/$USER/.shortcuts.sh
 
 # golang
-export GOPATH=/home/$USER
-export GOBIN=/home/$USER/bin
+export GOPATH=/home/$USER/go
+export GOBIN=/home/$USER/go/bin
 export CGO_ENABLED=0 # static linking!
 
 # path
-export PATH=$PATH:/home/$USER/bin
-export CDPATH=$CDPATH:/home/$USER/src/
-source /home/$USER/.shortcuts.sh
+export PATH=$PATH:/home/$USER/go/bin
+export CDPATH=$CDPATH:/home/$USER/go/src

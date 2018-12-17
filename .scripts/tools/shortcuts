@@ -8,7 +8,7 @@ bmdirs="$HOME/.bmdirs"
 bmfiles="$HOME/.bmfiles"
 
 # Output locations. Unactivated progs should go to /dev/null.
-shell_shortcuts="$HOME/.shortcuts"
+shell_shortcuts="$HOME/.shortcuts.sh"
 ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
 qute_shortcuts="/dev/null"
 fish_shortcuts="/dev/null"
