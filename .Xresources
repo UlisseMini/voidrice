@@ -20,4 +20,6 @@
 !! Luke's transparency, i like 150 more.
 !!*.alpha: 230
 !! Set a default font and font size as below:
-*.font: Monospace-50;
+*.font: monospace-40
+!! Fix emacs
+Emacs.alpha: 90
