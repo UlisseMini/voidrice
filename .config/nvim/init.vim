@@ -99,6 +99,7 @@ call plug#end()
 	autocmd Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 	autocmd Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
 	autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
+	autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
 	autocmd Filetype asm set syntax=nasm
 
 " Disable auto commenting

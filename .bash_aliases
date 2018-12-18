@@ -9,14 +9,14 @@ alias ka="killall"
 # golang aliases
 alias gob="go build"
 alias sgo="cd /lib/go/src/"
-alias gos="cd ~/src/"
-alias gop="cd ~/src/github.com/UlisseMini/"
+alias gos="cd $GOPATH/src/"
+alias gop="cd $GOPATH/src/github.com/UlisseMini/"
 alias got="go test -race"
 alias goi="go install"
 
 # aliases for finding files
 alias locate="find . | grep -i"
-alias rlocate="sudo find / 2>/dev/null | grep"
+alias rlocate="sudo find / 2>/dev/null | grep -i"
 
 # editing
 alias v="$EDITOR"
@@ -31,7 +31,7 @@ function brightness() {
 }
 
 
-# youtube-dl
+# Youtube stuffs
 alias yt="youtube-dl --add-metadata -ic" # Download video link
 alias yta="yt -x -f bestaudio/best" # Download only audio
 alias YT="youtube-viewer" # Youtube streaming from the commandline!
