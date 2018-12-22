@@ -25,20 +25,41 @@ set nocompatible
 	" folding
 	set foldmethod=marker
 
-	" deoplete settings
-	let g:deoplete#enable_at_startup = 1"}}}
+	" Splits open at the bottom and right
+	set splitbelow splitright
+
+	" vim = best fuzzy finder
+	set path=.**
+	set wildmenu
+
+	" Tweaks for file browsing
+	let g:netrw_banner=0 " disable anoying banner
+	let g:netrw_liststyle=3 " tree view
+"}}}
 
 " Plugins{{{
 call plug#begin('~/.config/nvim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
 Plug 'gcmt/taboo.vim'
-call plug#end()"}}}
+call plug#end()
+
+" make deoplete load on startup
+let g:deoplete#enable_at_startup = 1
+
+" vim-go settings{{{
+	let g:go_doc_keywordprg_enabled = 0
+	let g:go_template_file = "default.go"
+	let g:go_template_test_file = "default_test.go"
+
+	" Autocompetion from source code
+	let g:go_gocode_propose_source = 1
+	"}}}
+"}}}
 
 " Leader bindings{{{
 	" Find where a variable is defined with <Leader> + g
@@ -46,11 +67,11 @@ call plug#end()"}}}
 
 	" Create new terminal in a new tab
 	fu! TabTerm()
-		:TabooOpen Terminal
+		:TabooOpen /bin/bash
 		:terminal
 	endfunction
 
-	noremap <Leader>T :call TabTerm()<CR>:<BS>i
+	noremap <Leader>t :call TabTerm()<CR>:<BS>i
 "}}}
 
 " AutoCmd{{{
@@ -69,6 +90,9 @@ call plug#end()"}}}
 
 	" Disable auto commenting
 	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+	" On file close remove whitespace
+	au BufWritePre * :%s/\s\+$//e
 "}}}
 
 " Remaps{{{
@@ -89,22 +113,8 @@ call plug#end()"}}}
 	nmap H 0
 	nmap L $
 	nmap J G
-	nmap K gg"}}}
-
-" vim-go settings{{{
-	let g:go_doc_keywordprg_enabled = 0
-	let g:go_template_file = "default.go"
-	let g:go_template_test_file = "default_test.go"
-
-	" Autocompetion from source code
-	let g:go_gocode_propose_source = 1
-
-	" Tweaks for file browsing
-	let g:netrw_banner=0 " disable anoying banner
-	let g:netrw_liststyle=3 " tree view
-
-	" Splits open at the bottom and right
-	set splitbelow splitright"}}}
+	nmap K gg
+"}}}
 
 " Colorscheme{{{
 	set background=dark
