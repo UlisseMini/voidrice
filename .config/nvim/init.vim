@@ -7,6 +7,27 @@
 " Fuck you vi (don't remove this its much better trust me)
 set nocompatible
 
+" Basics{{{
+	filetype plugin on
+	syntax on
+	set encoding=utf-8
+	set number relativenumber
+	set history=1000
+	let mapleader = ";"
+
+	" tab settings
+	set tabstop=4
+	set shiftwidth=4
+
+	" disable status bar
+	set laststatus=0
+
+	" folding
+	set foldmethod=marker
+
+	" deoplete settings
+	let g:deoplete#enable_at_startup = 1"}}}
+
 " Plugins{{{
 call plug#begin('~/.config/nvim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
@@ -16,7 +37,21 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
+Plug 'gcmt/taboo.vim'
 call plug#end()"}}}
+
+" Leader bindings{{{
+	" Find where a variable is defined with <Leader> + g
+	noremap <Leader>g :GoDef<CR>:<BS>
+
+	" Create new terminal in a new tab
+	fu! TabTerm()
+		:TabooOpen Terminal
+		:terminal
+	endfunction
+
+	noremap <Leader>T :call TabTerm()<CR>:<BS>i
+"}}}
 
 " AutoCmd{{{
 	" don't allow colorschemes to change the background
@@ -46,9 +81,6 @@ call plug#end()"}}}
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
-	" Find where a variable is defined with <Leader> + g
-	noremap <Leader>g :GoDef<CR>:<BS>
-
 	" Bindings to make copying and pasting easier
 	vnoremap <C-c> "+y
 	map <C-p> "+p
@@ -58,32 +90,6 @@ call plug#end()"}}}
 	nmap L $
 	nmap J G
 	nmap K gg"}}}
-
-" Basics{{{
-	filetype plugin on
-	syntax on
-	set encoding=utf-8
-	set number relativenumber
-	set history=1000
-	let mapleader = " "
-
-	" tab settings
-	set tabstop=4
-	set shiftwidth=4
-
-	" disable status bar
-	set laststatus=0
-
-	" folding
-	set foldmethod=marker
-
-	" colorscheme
-	set background=dark
-	" try and load the colorscheme but ignore errors
-	silent! colorscheme gruvbox
-
-	" deoplete settings
-	let g:deoplete#enable_at_startup = 1"}}}
 
 " vim-go settings{{{
 	let g:go_doc_keywordprg_enabled = 0
@@ -99,6 +105,11 @@ call plug#end()"}}}
 
 	" Splits open at the bottom and right
 	set splitbelow splitright"}}}
+
+" Colorscheme{{{
+	set background=dark
+	" try and load the colorscheme but ignore errors
+	silent! colorscheme gruvbox"}}}
 
 " Copy selected text to system clipboard using xclip{{{
 	let g:clipboard = {
