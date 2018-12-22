@@ -1,11 +1,9 @@
 # Uli's GNU/Linux Dotfiles
 
-There are my dotfiles! The name of the repo, "voidrice", came from the fact they were originally on Luke smith's Void Linux machine, but these files are distro-independent.
-
 ## Programs whose configs can be found here
 
 + i3 (i3-gaps)
-+ Xresourses info used by [my st build](https://github.com/lukesmithxyz/st) as a terminal
++ Xresourses info used by [my st build](https://github.com/UlisseMini/st) as a terminal
 + vim
 + bash
 + ranger (see full documentation [here](.config/ranger/luke_ranger_readme.md))
