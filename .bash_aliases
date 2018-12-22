@@ -5,6 +5,15 @@ alias reload="source ~/.bashrc"
 alias wifi="sudo wifi"
 alias g="git"
 alias ka="killall"
+alias update="sudo pacman -Syu"
+
+alias popd="popd >/dev/null"
+alias pushd="pushd >/dev/null"
+
+# Dotfiles
+alias vfs="pushd ~/.config/nvim/"
+alias vrc="pushd ~/.config/nvim/ && $EDITOR init.vim && popd"
+alias brc="$EDITOR .bash_aliases"
 
 # golang aliases
 alias gob="go build"
@@ -43,20 +52,6 @@ alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 # Color cat - print file with syntax highlighting.
 alias ccat="highlight --out-format=ansi"
-
-## DOTFILES ##
-function vrc() {
-	cd ~/.config/nvim/ 2>/dev/null &&
-		$EDITOR -p init.vim &&
-		cd - >/dev/null
-}
-
-# i'm usually making aliases. cd is there so i can :tabedit bashrc easily.
-function brc() {
-	cd ~/ &&
-		vim .bash_aliases &&
-		cd - >/dev/null
-}
 
 ## Docker ##
 function dockerstopall() {

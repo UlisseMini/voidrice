@@ -22,6 +22,10 @@ set nocompatible
 	" disable status bar
 	set laststatus=0
 
+	" Better pattern matching
+	set ignorecase
+	set smartcase
+
 	" folding
 	set foldmethod=marker
 
@@ -46,6 +50,7 @@ Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
 Plug 'gcmt/taboo.vim'
+Plug 'UlisseMini/test-plugin'
 call plug#end()
 
 " make deoplete load on startup
@@ -109,11 +114,9 @@ let g:deoplete#enable_at_startup = 1
 	vnoremap <C-c> "+y
 	map <C-p> "+p
 
-	" Lets you shift <movement> (idea from parth's dotfiles)
-	nmap H 0
-	nmap L $
-	nmap J G
-	nmap K gg
+	" Will use when i figure out a good mapping
+	nnoremap K <nop>
+	nnoremap J <nop>
 "}}}
 
 " Colorscheme{{{
