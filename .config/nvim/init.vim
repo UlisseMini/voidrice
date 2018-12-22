@@ -4,9 +4,11 @@
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 
+" Fuck you vi (don't remove this its much better trust me)
 set nocompatible
 
-call plug#begin('~/.vim/plugged')
+" Plugins{{{
+call plug#begin('~/.config/nvim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ntpeters/vim-better-whitespace'
@@ -14,14 +16,54 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
 Plug 'vimwiki/vimwiki'
-call plug#end()
+call plug#end()"}}}
 
-" Some basics:
-	set nocompatible
+" AutoCmd{{{
+	" don't allow colorschemes to change the background
+	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+
+	" Disable line numbers in the terminal
+	au TermOpen * setlocal nonumber norelativenumber
+
+	" Tabs settings for diferent languages
+	au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
+	au Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
+	au Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
+	au Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
+	au Filetype asm set syntax=nasm
+
+	" Disable auto commenting
+	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+"}}}
+
+" Remaps{{{
+	" exit terminal mode with esc
+	tnoremap <Esc> <C-\><C-n>
+
+	" Shortcutting split navigation, saving a keypress:
+	map <C-h> <C-w>h
+	map <C-j> <C-w>j
+	map <C-k> <C-w>k
+	map <C-l> <C-w>l
+
+	" Find where a variable is defined with <Leader> + g
+	noremap <Leader>g :GoDef<CR>:<BS>
+
+	" Bindings to make copying and pasting easier
+	vnoremap <C-c> "+y
+	map <C-p> "+p
+
+	" Lets you shift <movement> (idea from parth's dotfiles)
+	nmap H 0
+	nmap L $
+	nmap J G
+	nmap K gg"}}}
+
+" Basics{{{
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
-	set number
+	set number relativenumber
 	set history=1000
 	let mapleader = " "
 
@@ -32,10 +74,18 @@ call plug#end()
 	" disable status bar
 	set laststatus=0
 
-" deoplete settings
-	let g:deoplete#enable_at_startup = 1
+	" folding
+	set foldmethod=marker
 
-" vim-go settings
+	" colorscheme
+	set background=dark
+	" try and load the colorscheme but ignore errors
+	silent! colorscheme gruvbox
+
+	" deoplete settings
+	let g:deoplete#enable_at_startup = 1"}}}
+
+" vim-go settings{{{
 	let g:go_doc_keywordprg_enabled = 0
 	let g:go_template_file = "default.go"
 	let g:go_template_test_file = "default_test.go"
@@ -43,41 +93,14 @@ call plug#end()
 	" Autocompetion from source code
 	let g:go_gocode_propose_source = 1
 
-	" Find where a variable is defined with <Leader> + g
-	noremap <Leader>g :GoDef<CR>:<BS>
+	" Tweaks for file browsing
+	let g:netrw_banner=0 " disable anoying banner
+	let g:netrw_liststyle=3 " tree view
 
-" uncomment if you want the mouse to be useable inside vim
-"	set mouse=a
+	" Splits open at the bottom and right
+	set splitbelow splitright"}}}
 
-" don't allow colorschemes to change the background
-	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
-
-" terminal mode settings
-" TODO: Disable line numbers in terminal mode.
-	au TermOpen * setlocal nonumber
-
-	" exit terminal mode with esc
-	tnoremap <Esc> <C-\><C-n>
-
-
-" colorscheme
-	set background=dark
-	" try and load the colorscheme but ignore errors
-	silent! colorscheme gruvbox
-
-" Splits open at the bottom and right
-	set splitbelow splitright
-
-" Shortcutting split navigation, saving a keypress:
-	map <C-h> <C-w>h
-	map <C-j> <C-w>j
-	map <C-k> <C-w>k
-	map <C-l> <C-w>l
-
-" Replace all is aliased to S.
-	nnoremap S :%s//<Left>
-
-" Copy selected text to system clipboard using xclip
+" Copy selected text to system clipboard using xclip{{{
 	let g:clipboard = {
 		   \   'name': 'xclip',
 		   \   'copy': {
@@ -89,28 +112,4 @@ call plug#end()
 		   \      '*': 'xclip -i -selection clipboard',
 		   \   },
 		   \   'cache_enabled': 1,
-		   \ }
-
-	" Bindings to make it easier
-	vnoremap <C-c> "+y
-	map <C-p> "+p
-
-" Lets you shift <movement> (idea from parth's dotfiles)
-	nnoremap H 0
-	nnoremap L $
-	nnoremap J G
-	nnoremap K gg
-
-" Tweaks for file browsing
-	let g:netrw_banner=0 " disable anoying banner
-	let g:netrw_liststyle=3 " tree view
-
-" Tabs settings for diferent languages
-	au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-	au Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
-	au Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
-	au Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
-	au Filetype asm set syntax=nasm
-
-" Disable auto commenting
-	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+		   \ }"}}}
