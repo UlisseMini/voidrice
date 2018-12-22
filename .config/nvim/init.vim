@@ -23,6 +23,7 @@ call plug#end()
 	set encoding=utf-8
 	set number
 	set history=1000
+	let mapleader = " "
 
 	" tab settings
 	set tabstop=4
@@ -42,14 +43,22 @@ call plug#end()
 	" Autocompetion from source code
 	let g:go_gocode_propose_source = 1
 
-	" Find where a variable is defined with ctrl + g
-	noremap <C-g> :GoDef<CR>:<BS>
+	" Find where a variable is defined with <Leader> + g
+	noremap <Leader>g :GoDef<CR>:<BS>
 
 " uncomment if you want the mouse to be useable inside vim
 "	set mouse=a
 
 " don't allow colorschemes to change the background
-	autocmd ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+
+" terminal mode settings
+" TODO: Disable line numbers in terminal mode.
+	au TermOpen * setlocal nonumber
+
+	" exit terminal mode with esc
+	tnoremap <Esc> <C-\><C-n>
+
 
 " colorscheme
 	set background=dark
@@ -82,6 +91,7 @@ call plug#end()
 		   \   'cache_enabled': 1,
 		   \ }
 
+	" Bindings to make it easier
 	vnoremap <C-c> "+y
 	map <C-p> "+p
 
@@ -96,11 +106,11 @@ call plug#end()
 	let g:netrw_liststyle=3 " tree view
 
 " Tabs settings for diferent languages
-	autocmd Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-	autocmd Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
-	autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
-	autocmd Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
-	autocmd Filetype asm set syntax=nasm
+	au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
+	au Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
+	au Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
+	au Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
+	au Filetype asm set syntax=nasm
 
 " Disable auto commenting
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

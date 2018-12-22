@@ -13,6 +13,7 @@ alias gos="cd $GOPATH/src/"
 alias gop="cd $GOPATH/src/github.com/UlisseMini/"
 alias got="go test -race"
 alias goi="go install"
+alias gor="go run"
 
 # aliases for finding files
 alias locate="find . | grep -i"
