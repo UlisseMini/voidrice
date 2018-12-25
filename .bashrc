@@ -30,9 +30,10 @@ source /home/$USER/.shortcuts.sh
 # golang
 export GOPATH=/home/$USER/go
 export GOBIN=/home/$USER/go/bin
-export CGO_ENABLED=0 # static linking!
+export CGO_ENABLED=0
+export GO111MODULE=auto
 
 # path
 export PATH=$PATH:/home/$USER/go/bin
 export CDPATH=$CDPATH:/home/$USER/go/src
-source /home/peep/.shortcuts.sh
+source /home/$USER/.shortcuts.sh
