@@ -58,11 +58,10 @@ let g:deoplete#enable_at_startup = 1
 
 " vim-go settings{{{
 	let g:go_doc_keywordprg_enabled = 0
-	let g:go_template_file = "default.go"
-	let g:go_template_test_file = "default_test.go"
+    let g:go_template_autocreate = 0
 
 	" Autocompetion from source code
-	let g:go_gocode_propose_source = 1
+	"let g:go_gocode_propose_source = 1
 	"}}}
 "}}}
 
