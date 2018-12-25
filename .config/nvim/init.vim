@@ -13,7 +13,7 @@ set nocompatible
 	set encoding=utf-8
 	set number relativenumber
 	set history=1000
-	let mapleader = ";"
+	let mapleader = ","
 
 	" tab settings
 	set tabstop=4

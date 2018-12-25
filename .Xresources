@@ -15,11 +15,8 @@
 *.color13: #d3869b
 *.color14: #8ec07c
 *.color15: #ebdbb2
+
 !! Transparency (0-255):
-*.alpha: 125
-!! Luke's transparency, i like 150 more.
-!!*.alpha: 230
+*.alpha: 100
 !! Set a default font and font size as below:
 *.font: monospace-40
-!! Fix emacs
-Emacs.alpha: 90

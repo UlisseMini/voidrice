@@ -35,3 +35,4 @@ export CGO_ENABLED=0 # static linking!
 # path
 export PATH=$PATH:/home/$USER/go/bin
 export CDPATH=$CDPATH:/home/$USER/go/src
+source /home/peep/.shortcuts.sh
