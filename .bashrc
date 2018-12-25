@@ -31,9 +31,10 @@ source /home/$USER/.shortcuts.sh
 export GOPATH=/home/$USER/go
 export GOBIN=/home/$USER/go/bin
 export CGO_ENABLED=0
-export GO111MODULE=auto
+export GO111MODULE=on
 
 # path
 export PATH=$PATH:/home/$USER/go/bin
 export CDPATH=$CDPATH:/home/$USER/go/src
 source /home/$USER/.shortcuts.sh
+source /home/peep/.shortcuts.sh
