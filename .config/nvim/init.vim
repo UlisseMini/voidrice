@@ -80,7 +80,7 @@ let g:deoplete#enable_at_startup = 1
 "}}}
 
 " AutoCmd{{{
-	" don't allow colorschemes to change the background
+	" don't allow colorscmemes to change the background
 	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 
 	" Disable line numbers in the terminal
