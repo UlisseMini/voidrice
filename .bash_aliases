@@ -13,7 +13,7 @@ alias pushd="pushd >/dev/null"
 # Dotfiles
 alias vfs="pushd ~/.config/nvim/"
 alias vrc="pushd ~/.config/nvim/ && $EDITOR init.vim && popd"
-alias brc="$EDITOR .bash_aliases"
+alias brc="$EDITOR ~/.bash_aliases"
 
 # golang aliases
 alias gob="go build"
