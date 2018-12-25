@@ -13,7 +13,7 @@ set nocompatible
 	set encoding=utf-8
 	set number relativenumber
 	set history=1000
-	let mapleader = ","
+	let mapleader = " "
 
 	" tab settings
 	set tabstop=4
@@ -67,16 +67,22 @@ let g:deoplete#enable_at_startup = 1
 "}}}
 
 " Leader bindings{{{
-	" Find where a variable is defined with <Leader> + g
-	noremap <Leader>g :GoDef<CR>:<BS>
-
 	" Create new terminal in a new tab
-	fu! TabTerm()
-		:TabooOpen /bin/bash
-		:terminal
+	fu! TabTerm(cmd)
+		:TabooOpen shell
+		:call termopen(a:cmd)
 	endfunction
 
-	noremap <Leader>t :call TabTerm()<CR>:<BS>i
+	noremap <Leader>t :call TabTerm("/bin/bash")<CR>:<BS>i
+
+	" Vim-go bindings.
+	nnoremap <leader>gr :call TabTerm("go run .")<CR>:<BS>
+	nnoremap <Leader>gd :GoDef<CR>:<BS>
+	nnoremap <leader>gn :GoRename<CR>:<BS>
+	nnoremap <leader>gb :GoBuild<CR>:<BS>
+	nnoremap <leader>gl :GoMetaLinter<CR>:<BS>
+	nnoremap <leader>gt :GoTest<CR>:<BS>
+	nnoremap <leader>gc :GoCoverage<CR>:<BS>
 "}}}
 
 " AutoCmd{{{
@@ -115,8 +121,8 @@ let g:deoplete#enable_at_startup = 1
 	map <C-p> "+p
 
 	" Will use when i figure out a good mapping
-	nnoremap K <nop>
-	nnoremap J <nop>
+	nnoremap K :cp<cr>:<bs>
+	nnoremap J :cn<cr>:<bs>
 "}}}
 
 " Colorscheme{{{
