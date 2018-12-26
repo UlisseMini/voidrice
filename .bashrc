@@ -37,4 +37,3 @@ export GO111MODULE=on
 export PATH=$PATH:/home/$USER/go/bin
 export CDPATH=$CDPATH:/home/$USER/go/src
 source /home/$USER/.shortcuts.sh
-source /home/peep/.shortcuts.sh

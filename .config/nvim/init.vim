@@ -107,7 +107,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Remaps{{{
 	" exit terminal mode with esc
-	tnoremap <Esc> <C-\><C-n>
+	tnoremap <C-a> <C-\><C-n>
 
 	" Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
