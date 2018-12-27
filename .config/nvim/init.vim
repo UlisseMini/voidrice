@@ -12,7 +12,9 @@ set nocompatible
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	set numberwidth=1 " Use the least amount of space possible
 	set history=1000
+	set mouse=a
 	let mapleader = " "
 
 	" tab settings
