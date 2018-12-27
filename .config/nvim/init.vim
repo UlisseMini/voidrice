@@ -67,18 +67,19 @@ let g:deoplete#enable_at_startup = 1
 	"}}}
 "}}}
 
-" Leader bindings{{{
+" leader bindings{{{
 	" Create new terminal in a new tab
 	fu! TabTerm(cmd)
 		:TabooOpen shell
 		:call termopen(a:cmd)
 	endfunction
 
-	noremap <Leader>t :call TabTerm("/bin/bash")<CR>:<BS>i
+	nnoremap <leader>t :call TabTerm("/bin/bash")<CR>:<BS>i
+	nnoremap <leader>s :%s///g<left><left><left>
 
 	" Vim-go bindings.
 	nnoremap <leader>gr :call TabTerm("go run .")<CR>:<BS>
-	nnoremap <Leader>gd :GoDef<CR>:<BS>
+	nnoremap <leader>gd :GoDef<CR>:<BS>
 	nnoremap <leader>gn :GoRename<CR>:<BS>
 	nnoremap <leader>gb :GoBuild<CR>:<BS>
 	nnoremap <leader>gl :GoMetaLinter<CR>:<BS>
@@ -109,7 +110,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Remaps{{{
 	" exit terminal mode with esc
-	tnoremap <C-a> <C-\><C-n>
+	tnoremap <C-z> <C-\><C-n>
 
 	" Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
