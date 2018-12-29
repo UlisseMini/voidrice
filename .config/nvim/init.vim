@@ -62,6 +62,12 @@ let g:deoplete#enable_at_startup = 1
 	let g:go_doc_keywordprg_enabled = 0
     let g:go_template_autocreate = 0
 
+	" goimports!
+	let g:go_fmt_command = "goimports"
+	" run in new tab
+	let g:go_term_mode = "TabooOpen Run|normal gt"
+
+
 	" Autocompetion from source code
 	"let g:go_gocode_propose_source = 1
 	"}}}
