@@ -51,7 +51,7 @@ alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 # Color cat - print file with syntax highlighting.
-alias ccat="highlight --out-format=ansi"
+alias ccat="highlight --out-format=ansi -t 4"
 
 ## Docker ##
 function dockerstopall() {
