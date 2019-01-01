@@ -30,12 +30,9 @@ source /home/$USER/.shortcuts.sh
 # golang
 export GOPATH=/home/$USER/go
 export GOBIN=/home/$USER/go/bin
-export CGO_ENABLED=0
-export GO111MODULE=on
 
 # path
 export PATH=$PATH:/home/$USER/go/bin
 export CDPATH=$CDPATH:$GOPATH/src
 export CDPATH=$CDPATH:$GOPATH/src/github.com/UlisseMini
 source /home/$USER/.shortcuts.sh
-source /home/peep/.shortcuts.sh
