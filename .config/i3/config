@@ -89,7 +89,7 @@ client.urgent		$darkred	$darkred	$black		$darkred		$darkred
 client.background $black
 
 bar {
-	font pango:mono 30
+	font pango:mono 20
 	colors {
 			background $darkblack
 			statusline $darkwhite
