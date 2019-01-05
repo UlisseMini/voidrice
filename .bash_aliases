@@ -10,6 +10,10 @@ alias update="sudo pacman -Syu"
 alias popd="popd >/dev/null"
 alias pushd="pushd >/dev/null"
 
+# for note taking
+alias todo="$EDITOR ~/.todo.md"
+alias cheat="$EDITOR ~/.cheatsheet.md"
+
 # Dotfiles
 alias vfs="pushd ~/.config/nvim/"
 alias vrc="pushd ~/.config/nvim/ && $EDITOR init.vim && popd"
