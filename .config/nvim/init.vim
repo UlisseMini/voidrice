@@ -11,10 +11,12 @@ set nocompatible
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
-	set number relativenumber
+	set number relativenumber ruler showmode
 	set numberwidth=1 " Use the least amount of space possible
 	set history=1000
 	set mouse=a
+	" unmap space just in case
+	nnoremap <Space> <nop>
 	let mapleader = " "
 
 	" tab settings
@@ -50,27 +52,25 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
-Plug 'vimwiki/vimwiki'
 Plug 'gcmt/taboo.vim'
-Plug 'UlisseMini/test-plugin'
+Plug 'aurieh/discord.nvim'
+
+" Greate autocomplete, annoying vsplit
+" Plug 'zchee/deoplete-go'
+
+" Use this later, once i learn how to use delve cli
+" Plug 'sebdah/vim-delve'
 call plug#end()
 
 " make deoplete load on startup
 let g:deoplete#enable_at_startup = 1
 
-" vim-go settings{{{
+" vim-go settings
 	let g:go_doc_keywordprg_enabled = 0
     let g:go_template_autocreate = 0
 
 	" goimports!
 	let g:go_fmt_command = "goimports"
-	" run in new tab
-	let g:go_term_mode = "TabooOpen Run|normal gt"
-
-
-	" Autocompetion from source code
-	"let g:go_gocode_propose_source = 1
-	"}}}
 "}}}
 
 " leader bindings{{{
@@ -84,7 +84,7 @@ let g:deoplete#enable_at_startup = 1
 	nnoremap <leader>s :%s///g<left><left><left>
 
 	" Vim-go bindings.
-	nnoremap <leader>gr :call TabTerm("go run .")<CR>:<BS>
+	nnoremap <leader>gr :GoRun<CR>:<BS>
 	nnoremap <leader>gd :GoDef<CR>:<BS>
 	nnoremap <leader>gn :GoRename<CR>:<BS>
 	nnoremap <leader>gb :GoBuild<CR>:<BS>
@@ -98,14 +98,16 @@ let g:deoplete#enable_at_startup = 1
 	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 
 	" Disable line numbers in the terminal
-	au TermOpen * setlocal nonumber norelativenumber
+	au TermOpen * setlocal nonumber norelativenumber noruler noshowmode
+	" showmode is a global option, so on terminal close we need to reset it
+	au TermClose * setlocal showmode
 
 	" Tabs settings for diferent languages
 	au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
 	au Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
 	au Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
 	au Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
-	au Filetype asm set syntax=nasm
+	"au Filetype asm set syntax=nasm
 
 	" Disable auto commenting
 	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
