@@ -11,10 +11,13 @@ set nocompatible
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
-	set number relativenumber ruler showmode
-	set numberwidth=1 " Use the least amount of space possible
+	set number relativenumber ruler showmode noshowcmd
+
+	" Use the least amount of space possible
+	set numberwidth=1
 	set history=1000
-	set mouse=a
+	set mouse=a " enable the mouse for when i feel like using it
+
 	" unmap space just in case
 	nnoremap <Space> <nop>
 	let mapleader = " "
@@ -53,7 +56,6 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
 Plug 'gcmt/taboo.vim'
-Plug 'aurieh/discord.nvim'
 
 " Greate autocomplete, annoying vsplit
 " Plug 'zchee/deoplete-go'
@@ -71,6 +73,8 @@ let g:deoplete#enable_at_startup = 1
 
 	" goimports!
 	let g:go_fmt_command = "goimports"
+	" Autocompetion from source code
+	"let g:go_gocode_propose_source = 1
 "}}}
 
 " leader bindings{{{
@@ -80,17 +84,18 @@ let g:deoplete#enable_at_startup = 1
 		:call termopen(a:cmd)
 	endfunction
 
-	nnoremap <leader>t :call TabTerm("/bin/bash")<CR>:<BS>i
+	nnoremap <leader>t :call TabTerm("/bin/bash")<cr>i
 	nnoremap <leader>s :%s///g<left><left><left>
 
 	" Vim-go bindings.
-	nnoremap <leader>gr :GoRun<CR>:<BS>
-	nnoremap <leader>gd :GoDef<CR>:<BS>
-	nnoremap <leader>gn :GoRename<CR>:<BS>
-	nnoremap <leader>gb :GoBuild<CR>:<BS>
-	nnoremap <leader>gl :GoMetaLinter<CR>:<BS>
-	nnoremap <leader>gt :GoTest<CR>:<BS>
-	nnoremap <leader>gc :GoCoverage<CR>:<BS>
+	nnoremap <leader>gr :GoRun<cr>
+	nnoremap <leader>gd :GoDef<cr>
+	nnoremap <leader>gn :GoRename<cr>
+	nnoremap <leader>gb :GoBuild<cr>
+	nnoremap <leader>gl :GoMetaLinter<cr>
+	nnoremap <leader>gt :GoTest<cr>
+	nnoremap <leader>gc :GoCoverage<cr>
+	nnoremap <leader>gh :GoDoc<space>
 "}}}
 
 " AutoCmd{{{
@@ -117,22 +122,26 @@ let g:deoplete#enable_at_startup = 1
 "}}}
 
 " Remaps{{{
-	" exit terminal mode with esc
-	tnoremap <C-a> <C-\><C-n>
-
 	" Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
+	" exit terminal mode with esc
+	tnoremap <C-a> <C-\><C-n>
+
+	" Easier tabs (like in the browser)
+	"map <C-t> :tabnew<cr>
+	"map <C-w> :silent! tabclose<cr>
+
 	" Bindings to make copying and pasting easier
 	vnoremap <C-c> "+y
 	map <C-p> "+p
 
 	" Will use when i figure out a good mapping
-	nnoremap K :cp<cr>:<bs>
-	nnoremap J :cn<cr>:<bs>
+	nnoremap K :cp<cr>
+	nnoremap J :cn<cr>
 "}}}
 
 " Colorscheme{{{

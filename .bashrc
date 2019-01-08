@@ -30,8 +30,6 @@ source /home/$USER/.shortcuts.sh
 # golang
 export GOPATH=/home/$USER/go
 export GOBIN=/home/$USER/go/bin
-export CGO_ENABLED=0
-export GO111MODULE=on
 
 # path
 export PATH=$PATH:/home/$USER/go/bin
@@ -39,3 +37,9 @@ export CDPATH=$CDPATH:$GOPATH/src
 export CDPATH=$CDPATH:$GOPATH/src/github.com/UlisseMini
 source /home/$USER/.shortcuts.sh
 source /home/peep/.shortcuts.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/peep/google-cloud-sdk/path.bash.inc' ]; then . '/home/peep/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/peep/google-cloud-sdk/completion.bash.inc' ]; then . '/home/peep/google-cloud-sdk/completion.bash.inc'; fi

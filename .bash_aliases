@@ -2,7 +2,7 @@
 
 # general
 alias reload="source ~/.bashrc"
-alias wifi="sudo wifi"
+alias wifi="sudo wifi toggle"
 alias g="git"
 alias ka="killall"
 alias update="sudo pacman -Syu"
