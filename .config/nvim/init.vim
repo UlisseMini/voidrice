@@ -51,13 +51,14 @@ set nocompatible
 " Plugins{{{
 call plug#begin('~/.config/nvim/plugged')
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'buoto/gotests-vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'SirVer/ultisnips'
 Plug 'morhetz/gruvbox'
 Plug 'gcmt/taboo.vim'
 
-" Greate autocomplete, annoying vsplit
+" Great autocomplete, annoying vsplit
 " Plug 'zchee/deoplete-go'
 
 " Use this later, once i learn how to use delve cli
