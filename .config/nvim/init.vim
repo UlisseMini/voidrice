@@ -7,18 +7,30 @@
 " Fuck you vi (don't remove this its much better trust me)
 set nocompatible
 
+" General plugins, more in ./ftplugin/*.vim{{{
+call plug#begin('~/.config/nvim/plugged')
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'SirVer/ultisnips'
+
+	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
+	Plug 'morhetz/gruvbox' " my theme
+	Plug 'gcmt/taboo.vim'  " small plugin for custom tab names (:TabooOpen)
+call plug#end()
+
+" make deoplete load on startup
+let g:deoplete#enable_at_startup = 1
+"}}}
+
 " Basics{{{
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
 	set number relativenumber ruler showmode noshowcmd
-
-	" Use the least amount of space possible
-	set numberwidth=1
 	set history=1000
-	set mouse=a " enable the mouse for when i feel like using it
 
-	" unmap space just in case
+	set numberwidth=1 " Use the least amount of space possible
+
+	" Map leader, set to space
 	nnoremap <Space> <nop>
 	let mapleader = " "
 
@@ -48,55 +60,11 @@ set nocompatible
 	let g:netrw_liststyle=3 " tree view
 "}}}
 
-" Plugins{{{
-call plug#begin('~/.config/nvim/plugged')
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'buoto/gotests-vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'SirVer/ultisnips'
-Plug 'morhetz/gruvbox'
-Plug 'gcmt/taboo.vim'
+" General leader bindings more in ./ftplugin/*.vim{{{
+	nn <leader>t :tabnew<cr>:te<cr>:<bs>i
+	nn <leader>s :%s///g<left><left><left>
+	nn <leader>c :noh<cr>:<bs>
 
-" Great autocomplete, annoying vsplit
-" Plug 'zchee/deoplete-go'
-
-" Use this later, once i learn how to use delve cli
-" Plug 'sebdah/vim-delve'
-call plug#end()
-
-" make deoplete load on startup
-let g:deoplete#enable_at_startup = 1
-
-" vim-go settings
-	let g:go_doc_keywordprg_enabled = 0
-    let g:go_template_autocreate = 0
-
-	" goimports!
-	let g:go_fmt_command = "goimports"
-	" Autocompetion from source code
-	"let g:go_gocode_propose_source = 1
-"}}}
-
-" leader bindings{{{
-	" Create new terminal in a new tab
-	fu! TabTerm(cmd)
-		:TabooOpen shell
-		:call termopen(a:cmd)
-	endfunction
-
-	nnoremap <leader>t :call TabTerm("/bin/bash")<cr>i
-	nnoremap <leader>s :%s///g<left><left><left>
-
-	" Vim-go bindings.
-	nnoremap <leader>gr :GoRun<cr>
-	nnoremap <leader>gd :GoDef<cr>
-	nnoremap <leader>gn :GoRename<cr>
-	nnoremap <leader>gb :GoBuild<cr>
-	nnoremap <leader>gl :GoMetaLinter<cr>
-	nnoremap <leader>gt :GoTest<cr>
-	nnoremap <leader>gc :GoCoverage<cr>
-	nnoremap <leader>gh :GoDoc<space>
 "}}}
 
 " AutoCmd{{{
@@ -108,17 +76,10 @@ let g:deoplete#enable_at_startup = 1
 	" showmode is a global option, so on terminal close we need to reset it
 	au TermClose * setlocal showmode
 
-	" Tabs settings for diferent languages
-	au Filetype go setlocal noexpandtab tabstop=4 shiftwidth=4
-	au Filetype lua setlocal noexpandtab tabstop=2 shiftwidth=2
-	au Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
-	au Filetype make setlocal noexpandtab tabstop=4 shiftwidth=4
-	"au Filetype asm set syntax=nasm
-
 	" Disable auto commenting
 	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-	" On file close remove whitespace
+	" On file close remove whitespace WITH THE CHAD REGEX
 	au BufWritePre * :%s/\s\+$//e
 "}}}
 
@@ -129,26 +90,23 @@ let g:deoplete#enable_at_startup = 1
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
-	" exit terminal mode with esc
-	tnoremap <C-a> <C-\><C-n>
+	" navigation of errors (that vim-go gives me)
+	nn K :cp<cr>
+	nn J :cn<cr>
 
-	" Easier tabs (like in the browser)
-	"map <C-t> :tabnew<cr>
-	"map <C-w> :silent! tabclose<cr>
+	" exit terminal mode with control a
+	tnoremap <C-a> <C-\><C-n>
 
 	" Bindings to make copying and pasting easier
 	vnoremap <C-c> "+y
-	map <C-p> "+p
-
-	" Will use when i figure out a good mapping
-	nnoremap K :cp<cr>
-	nnoremap J :cn<cr>
+	inoremap <C-v> <esc>"+p
 "}}}
 
 " Colorscheme{{{
 	set background=dark
 	" try and load the colorscheme but ignore errors
-	silent! colorscheme gruvbox"}}}
+	silent! colorscheme gruvbox
+"}}}
 
 " Copy selected text to system clipboard using xclip{{{
 	let g:clipboard = {
@@ -158,8 +116,10 @@ let g:deoplete#enable_at_startup = 1
 		   \      '*': 'xclip -i -selection clipboard',
 		   \    },
 		   \   'paste': {
-		   \      '+': 'xclip -i -selection clipboard',
-		   \      '*': 'xclip -i -selection clipboard',
+		   \      '+': 'xclip -o -selection clipboard',
+		   \      '*': 'xclip -o -selection clipboard',
 		   \   },
 		   \   'cache_enabled': 1,
-		   \ }"}}}
+		   \ }
+	"}}}
+

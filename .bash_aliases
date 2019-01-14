@@ -4,8 +4,10 @@
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi toggle"
 alias g="git"
-alias ka="killall"
 alias update="sudo pacman -Syu"
+
+alias py="python"
+alias ipy="ipython"
 
 alias popd="popd >/dev/null"
 alias pushd="pushd >/dev/null"
@@ -16,7 +18,7 @@ alias cheat="$EDITOR ~/.cheatsheet.md"
 
 # Dotfiles
 alias vfs="pushd ~/.config/nvim/"
-alias vrc="pushd ~/.config/nvim/ && $EDITOR init.vim && popd"
+alias vrc="pushd ~/.config/nvim/ && ranger . && popd"
 alias brc="$EDITOR ~/.bash_aliases"
 
 # golang aliases
@@ -37,6 +39,13 @@ alias v="$EDITOR"
 alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias nvim="$EDITOR"
+
+# killall function, that ACTUALLY kills all
+function ka() {
+	while true; do
+		killall $1 || return
+	done
+}
 
 # brightness not working on my macbook, this is my workaround.
 function brightness() {
