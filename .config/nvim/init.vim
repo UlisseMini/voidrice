@@ -9,6 +9,7 @@ set nocompatible
 
 " General plugins, more in ./ftplugin/*.vim{{{
 call plug#begin('~/.config/nvim/plugged')
+	Plug 'tpope/vim-surround'
 	Plug 'Shougo/deoplete.nvim'
 	Plug 'SirVer/ultisnips'
 
