@@ -35,4 +35,3 @@ export GOBIN=/home/$USER/go/bin
 export PATH=$PATH:/home/$USER/go/bin
 export CDPATH=$CDPATH:$GOPATH/src
 export CDPATH=$CDPATH:$GOPATH/src/github.com/UlisseMini
-source /home/$USER/.shortcuts.sh

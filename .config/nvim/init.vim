@@ -7,19 +7,37 @@
 " Fuck you vi (don't remove this its much better trust me)
 set nocompatible
 
-" General plugins, more in ./ftplugin/*.vim{{{
+" Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
+	" General
 	Plug 'tpope/vim-surround'
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'SirVer/ultisnips'
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'Shougo/neosnippet.vim'
+	Plug 'Shougo/neosnippet-snippets'
 
+	" Golang development (settings in ftplugin/go.vim)
+	Plug 'fatih/vim-go', { 'for': 'go' }
+	Plug 'sebdah/vim-delve', { 'for': 'go' }
+	Plug 'buoto/gotests-vim', { 'for': 'go' }
+	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+
+	" Tiny plugins
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 	Plug 'morhetz/gruvbox' " my theme
 	Plug 'gcmt/taboo.vim'  " small plugin for custom tab names (:TabooOpen)
 call plug#end()
 
-" make deoplete load on startup
+" Make deoplete load on startup
 let g:deoplete#enable_at_startup = 1
+
+" Make neosnippet use tabs for expanding snippets
+imap <expr><TAB>
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 "}}}
 
 " Basics{{{
@@ -28,6 +46,9 @@ let g:deoplete#enable_at_startup = 1
 	set encoding=utf-8
 	set number relativenumber ruler showmode noshowcmd
 	set history=1000
+	" disable autocompletion preview
+	set completeopt-=preview
+
 
 	set numberwidth=1 " Use the least amount of space possible
 
@@ -65,7 +86,6 @@ let g:deoplete#enable_at_startup = 1
 	nn <leader>t :tabnew<cr>:te<cr>:<bs>i
 	nn <leader>s :%s///g<left><left><left>
 	nn <leader>c :noh<cr>:<bs>
-
 "}}}
 
 " AutoCmd{{{
@@ -90,10 +110,6 @@ let g:deoplete#enable_at_startup = 1
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
-
-	" navigation of errors (that vim-go gives me)
-	nn K :cp<cr>
-	nn J :cn<cr>
 
 	" exit terminal mode with control a
 	tnoremap <C-a> <C-\><C-n>
