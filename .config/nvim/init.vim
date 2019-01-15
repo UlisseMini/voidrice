@@ -46,9 +46,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set encoding=utf-8
 	set number relativenumber ruler showmode noshowcmd
 	set history=1000
+
+	" Undo settings
+	set undofile undodir=~/.config/nvim/undo
+	set undolevels=9999
+
 	" disable autocompletion preview
 	set completeopt-=preview
-
 
 	set numberwidth=1 " Use the least amount of space possible
 
@@ -78,14 +82,16 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set wildmenu
 
 	" Tweaks for file browsing
-	let g:netrw_banner=0 " disable anoying banner
-	let g:netrw_liststyle=3 " tree view
+	let g:netrw_banner=0     " disable anoying banner
+	let g:netrw_liststyle=3  " tree view
+	let g:netrw_winsize = 25 " window size
 "}}}
 
 " General leader bindings more in ./ftplugin/*.vim{{{
 	nn <leader>t :tabnew<cr>:te<cr>:<bs>i
 	nn <leader>s :%s///g<left><left><left>
 	nn <leader>c :noh<cr>:<bs>
+	nn <leader>a :cclose<CR> "close quickfix windows
 "}}}
 
 " AutoCmd{{{
@@ -102,6 +108,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 	" On file close remove whitespace WITH THE CHAD REGEX
 	au BufWritePre * :%s/\s\+$//e
+
+	" Hide QFix buffer (quickfix)
+	augroup QFix
+		autocmd!
+		autocmd FileType qf setlocal nobuflisted
+	augroup END
 "}}}
 
 " Remaps{{{
@@ -117,6 +129,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	" Bindings to make copying and pasting easier
 	vnoremap <C-c> "+y
 	inoremap <C-v> <esc>"+p
+
+	" Center the screen when searching
+	nnoremap n nzzzv
+
+	" make Y non retarded
+	nnoremap Y y$
 "}}}
 
 " Colorscheme{{{

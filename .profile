@@ -9,6 +9,9 @@ export BROWSER="firefox"
 export READER="zathura"
 export BIB="$HOME/Documents/LaTeX/uni.bib"
 export REFER="$HOME/.referbib"
+# Use neovim for manuals
+export MANPAGER='nvim +Man!'
+
 
 # PIX is here I have LARBS keep icons. Subject to change, hence a variable.
 export PIX="$HOME/.scripts/pix"

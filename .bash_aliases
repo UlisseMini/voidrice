@@ -3,7 +3,7 @@
 # general
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi toggle"
-alias g="git"
+alias g="hub"
 alias update="sudo pacman -Syu"
 
 alias py="python"
