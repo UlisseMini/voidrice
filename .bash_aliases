@@ -40,6 +40,16 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias nvim="$EDITOR"
 
+# make it easier to compile C programs
+function c() {
+	gcc -Wall $1 -o ${1:0:-2}
+}
+
+# compile and run C program
+function cr() {
+	c $1 && ./${1:0:-2}
+}
+
 # killall function, that ACTUALLY kills all
 function ka() {
 	while true; do
@@ -63,6 +73,7 @@ alias YT="youtube-viewer" # Youtube streaming from the commandline!
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 alias diff="diff --color=auto"
+
 # Color cat - print file with syntax highlighting.
 alias ccat="highlight --out-format=ansi -t 4"
 

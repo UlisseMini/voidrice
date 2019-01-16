@@ -32,6 +32,6 @@ export GOPATH=/home/$USER/go
 export GOBIN=/home/$USER/go/bin
 
 # path
-export PATH=$PATH:/home/$USER/go/bin
+export PATH=$PATH:/$HOME/go/bin:$HOME/.local/bin
 export CDPATH=$CDPATH:$GOPATH/src
 export CDPATH=$CDPATH:$GOPATH/src/github.com/UlisseMini

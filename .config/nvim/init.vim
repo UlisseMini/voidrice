@@ -29,6 +29,7 @@ call plug#end()
 
 " Make deoplete load on startup
 let g:deoplete#enable_at_startup = 1
+set pumheight=10 " Completion window max size
 
 " Make neosnippet use tabs for expanding snippets
 imap <expr><TAB>
@@ -41,15 +42,22 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "}}}
 
 " Basics{{{
-	filetype plugin on
+	filetype plugin indent on
 	syntax on
 	set encoding=utf-8
 	set number relativenumber ruler showmode noshowcmd
-	set history=1000
+	set autoread				 " read changes outside of vim automatically
+	set noerrorbells			 " begone beeps
+	set noswapfile				 " Don't use swapfile
+	set nobackup				 " Don't create annoying backup files
+	set autowrite				 " Automatically save before :next, :make etc.
+	set hidden
+	set history=1000             " vim ex mode history
+	set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 
 	" Undo settings
 	set undofile undodir=~/.config/nvim/undo
-	set undolevels=9999
+	set undolevels=1000
 
 	" disable autocompletion preview
 	set completeopt-=preview
@@ -88,10 +96,14 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "}}}
 
 " General leader bindings more in ./ftplugin/*.vim{{{
-	nn <leader>t :tabnew<cr>:te<cr>:<bs>i
+	nn <C-t> :tabnew<cr>:te<cr>:<bs>i
 	nn <leader>s :%s///g<left><left><left>
 	nn <leader>c :noh<cr>:<bs>
-	nn <leader>a :cclose<CR> "close quickfix windows
+	nn <leader>a :cclose<CR>
+
+	nn <leader>l :ls<cr>:b
+	"nn <leader>f :tab split<cr>:<bs>
+	nn <leader>f :tab split<cr>:<bs>
 "}}}
 
 " AutoCmd{{{
