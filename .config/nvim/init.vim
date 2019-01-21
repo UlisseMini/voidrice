@@ -48,12 +48,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set number relativenumber ruler showmode noshowcmd
 	set autoread				 " read changes outside of vim automatically
 	set noerrorbells			 " begone beeps
-	set noswapfile				 " Don't use swapfile
-	set nobackup				 " Don't create annoying backup files
 	set autowrite				 " Automatically save before :next, :make etc.
 	set hidden
 	set history=1000             " vim ex mode history
 	set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
+	set copyindent               " copy existing indentation
 
 	" Undo settings
 	set undofile undodir=~/.config/nvim/undo
@@ -107,6 +106,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "}}}
 
 " AutoCmd{{{
+	" for some reason asm.vim in ./ftplugin was not working
+	au Filetype asm set syntax=nasm
+
 	" don't allow colorscmemes to change the background
 	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
 
@@ -126,6 +128,93 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 		autocmd!
 		autocmd FileType qf setlocal nobuflisted
 	augroup END
+"}}}
+
+" Binary editing{{{
+" shortcut commands
+command -bar Hex call ToggleHex()
+command -bar Binary call ToggleBin()
+
+" http://vim.wikia.com/wiki/Improved_hex_editing
+function ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries
+              "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
+
+function ToggleBin()
+  " bin mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editBin") || !b:editBin
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary       " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries
+              "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editBin=1
+    " switch to binary editor
+    %!xxd -b
+	setlocal nomodifiable " editing binary is not supported
+  else
+    " restore old options
+	setlocal modifiable
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editBin=0
+    " return to normal editing (reload file)
+	edit!
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
 "}}}
 
 " Remaps{{{

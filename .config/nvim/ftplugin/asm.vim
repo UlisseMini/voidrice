@@ -1,1 +1,1 @@
-setlocal syntax=nasm
+set syntax=nasm

@@ -5,6 +5,7 @@ alias reload="source ~/.bashrc"
 alias wifi="sudo wifi toggle"
 alias g="hub"
 alias update="sudo pacman -Syu"
+alias sv="sudoedit"
 
 alias py="python"
 alias ipy="ipython"
@@ -40,14 +41,42 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias nvim="$EDITOR"
 
+# make it easier to compile assembly progams
+# i use the extention .asm so i'll trim the last 4 chars.
+function asm() {
+	local out="${1:0:-4}"
+
+	nasm -f elf64 "$1" -o $out.o && \
+		ld $out.o -o $out && \
+		rm $out.o
+}
+
+function asmf() {
+	local out="${1:0:-4}"
+
+	nasm  -f elf64 "$1" -o $out.o && \
+		ld $out.o -o $out -lc --dynamic-linker /lib/ld-2.28.so && \
+		rm $out.o
+}
+
+# disassemble programs with gdb, kinda a hack -- idc
+function disassemble() {
+	echo "quit" | gdb -q -ex "disassemble main" $1 | tail -n +2 | head -n -1
+}
+
 # make it easier to compile C programs
 function c() {
-	gcc -Wall $1 -o ${1:0:-2}
+	gcc -Wall "$1" -o "${1:0:-2}"
 }
 
 # compile and run C program
 function cr() {
-	c $1 && ./${1:0:-2}
+	c "$1" && "./${1:0:-2}"
+}
+
+# compile and install C program to path
+function ci() {
+	c $1 && mv ./${1:0:-2} ~/.local/bin
 }
 
 # killall function, that ACTUALLY kills all
