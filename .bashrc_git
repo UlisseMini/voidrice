@@ -33,5 +33,11 @@ export GOBIN=/home/$USER/go/bin
 
 # path
 export PATH=$PATH:/$HOME/go/bin:$HOME/.local/bin
+
+# cdpath
 export CDPATH=$CDPATH:$GOPATH/src
-export CDPATH=$CDPATH:$GOPATH/src/github.com/UlisseMini
+
+for d in $GOPATH/src/github.com/*
+do
+	export CDPATH=$CDPATH:$d
+done

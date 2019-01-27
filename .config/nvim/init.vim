@@ -4,9 +4,6 @@
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 
-" Fuck you vi (don't remove this its much better trust me)
-set nocompatible
-
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
 	" General
@@ -218,11 +215,19 @@ endfunction
 "}}}
 
 " Remaps{{{
+	" just in case ;)
+	com W w
+	com WQ wq
+	com Q q
+
 	" Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
+
+	" next error in quickfix
+	nnoremap J :cn<cr>:<bs>
 
 	" exit terminal mode with control a
 	tnoremap <C-a> <C-\><C-n>
