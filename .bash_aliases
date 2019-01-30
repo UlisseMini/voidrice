@@ -24,7 +24,7 @@ alias brc="$EDITOR ~/.bash_aliases"
 
 # golang aliases
 alias gob="go build"
-alias sgo="cd /lib/go/src/"
+alias sgo="pushd /lib/go/src/"
 alias gos="cd $GOPATH/src/"
 alias gop="cd $GOPATH/src/github.com/UlisseMini/"
 alias got="go test -race"
@@ -83,6 +83,9 @@ function ci() {
 function ka() {
 	while true; do
 		killall $1 || return
+		sleep 0.1
+		killall -9 $1 || return
+		sleep 0.1
 	done
 }
 
