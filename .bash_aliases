@@ -6,6 +6,7 @@ alias wifi="sudo wifi toggle"
 alias g="hub"
 alias update="sudo pacman -Syu"
 alias sv="sudoedit"
+alias cr="crystal"
 
 alias py="python"
 alias ipy="ipython"
@@ -41,6 +42,12 @@ alias vi="$EDITOR"
 alias vim="$EDITOR"
 alias nvim="$EDITOR"
 
+# make directory then cd into it
+function mc() {
+	mkdir -p $1 && \
+		cd $1
+}
+
 # make it easier to compile assembly progams
 # i use the extention .asm so i'll trim the last 4 chars.
 function asm() {
@@ -67,11 +74,6 @@ function disassemble() {
 # make it easier to compile C programs
 function c() {
 	gcc -Wall "$1" -o "${1:0:-2}"
-}
-
-# compile and run C program
-function cr() {
-	c "$1" && "./${1:0:-2}"
 }
 
 # compile and install C program to path

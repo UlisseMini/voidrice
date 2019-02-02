@@ -18,6 +18,9 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'buoto/gotests-vim', { 'for': 'go' }
 	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 
+	" Other languages
+	Plug 'https://github.com/rhysd/vim-crystal', { 'for': 'crystal' }
+
 	" Tiny plugins
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 	Plug 'morhetz/gruvbox' " my theme
