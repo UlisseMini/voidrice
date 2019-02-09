@@ -1,5 +1,7 @@
 !! The default colors are "Gruvbox":
-*.color0: #1d2021
+!! *.color0: #1d2021
+*.color0: #262626
+
 *.color1: #cc241d
 *.color2: #98971a
 *.color3: #d79921
@@ -17,6 +19,6 @@
 *.color15: #ebdbb2
 
 !! Transparency (0-255):
-*.alpha: 100
+*.alpha: 255
 !! Set a default font and font size as below:
 *.font: monospace-40

@@ -133,7 +133,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 	" executed on colorscheme command
 	function! ColorScheme()
-		highlight Normal ctermbg=NONE guibg=NONE
+		"highlight Normal ctermbg=NONE guibg=NONE
 		highlight Folded ctermbg=NONE
 	endfunction
 
