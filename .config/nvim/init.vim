@@ -43,7 +43,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 " Basics{{{
 	filetype plugin indent on
-	syntax on
+	syntax enable
 	set encoding=utf-8
 	set number relativenumber ruler showmode noshowcmd
 	set autoread				 " read changes outside of vim automatically
@@ -79,7 +79,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set smartcase
 
 	" folding
-	set foldmethod=marker
+	set foldmethod=manual
 
 	" Splits open at the bottom and right
 	set splitbelow splitright
@@ -237,7 +237,7 @@ endfunction
 
 	" Bindings to make copying and pasting easier
 	vnoremap <C-c> "+y
-	inoremap <C-v> <esc>"+p
+	" inoremap <C-v> <esc>"+p
 
 	" Center the screen when searching
 	nnoremap n nzzzv
@@ -249,7 +249,7 @@ endfunction
 " Colorscheme{{{
 	set background=dark
 	" try and load the colorscheme but ignore errors
-	silent! colorscheme gruvbox
+	silent! colo gruvbox
 "}}}
 
 " Copy selected text to system clipboard using xclip{{{

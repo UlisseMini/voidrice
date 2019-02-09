@@ -7,6 +7,7 @@ alias g="hub"
 alias update="sudo pacman -Syu"
 alias sv="sudoedit"
 alias cr="crystal"
+alias rm="rm -I"
 
 alias py="python"
 alias ipy="ipython"
@@ -31,6 +32,17 @@ alias gop="cd $GOPATH/src/github.com/UlisseMini/"
 alias got="go test -race"
 alias goi="go install"
 alias gor="go run"
+
+# Build and compress binaries
+function gocompress() {
+	out="${1:0:-3}"
+	if [[ "$GOOS" == "windows" ]]; then
+		out="$out.exe"
+	fi
+
+	go build -ldflags="-s -w" -o "$out" "$1"
+	upx --brute --best "$out"
+}
 
 # aliases for finding files
 alias locate="find . | grep -i"
