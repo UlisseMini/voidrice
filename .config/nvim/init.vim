@@ -25,6 +25,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 	Plug 'morhetz/gruvbox' " my theme
 	Plug 'gcmt/taboo.vim'  " small plugin for custom tab names (:TabooOpen)
+	Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 " Make deoplete load on startup
@@ -53,6 +54,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set history=1000             " vim ex mode history
 	set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 	set copyindent               " copy existing indentation
+
+	" don't fill the rest of the screen with folding
+	set fillchars=fold:\ 
 
 	" Undo settings
 	set undofile undodir=~/.config/nvim/undo
@@ -105,7 +109,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>f :tab split<cr>:<bs>
 
 	" toggle iferr block folding
-	function ToggleIfErr()
+	func ToggleIfErr()
 		if !exists("b:IfErr") || !b:IfErr
 			" set status
 			let b:IfErr = 1
@@ -119,7 +123,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 			" unfold all
 			normal zR
 		endif
-	endfunction
+	endfu
 	nn <leader>gf :call ToggleIfErr()<cr>:<bs>
 "}}}
 
@@ -127,8 +131,8 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	" for some reason asm.vim in ./ftplugin was not working
 	au Filetype asm set syntax=nasm
 
-	" don't allow colorscmemes to change the background
-	function! ColorScheme() " executed on colorscheme command
+	" executed on colorscheme command
+	function! ColorScheme()
 		highlight Normal ctermbg=NONE guibg=NONE
 		highlight Folded ctermbg=NONE
 	endfunction
@@ -142,9 +146,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 	" Disable auto commenting
 	au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-	" On file close remove whitespace WITH THE CHAD REGEX
-	au BufWritePre * :%s/\s\+$//e
 
 	" Hide QFix buffer (quickfix)
 	augroup QFix

@@ -20,6 +20,9 @@ let g:go_snippet_engine = 'neosnippet'
 " use goimports instead of gofmt
 let g:go_fmt_command = "goimports"
 
+" better vimgo fmt
+" let g:go_fmt_experimental = 0
+
 setlocal noexpandtab tabstop=4 shiftwidth=4
 
 " General
