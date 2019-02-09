@@ -103,6 +103,24 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>l :ls<cr>:b
 	"nn <leader>f :tab split<cr>:<bs>
 	nn <leader>f :tab split<cr>:<bs>
+
+	" toggle iferr block folding
+	function ToggleIfErr()
+		if !exists("b:IfErr") || !b:IfErr
+			" set status
+			let b:IfErr = 1
+
+			" fold all iferr blocks
+			%g/if .*err != nil.*{\_.\{-\}}/.,/}/fo
+		else
+			" set status
+			let b:IfErr = 0
+
+			" unfold all
+			normal zR
+		endif
+	endfunction
+	nn <leader>gf :call ToggleIfErr()<cr>:<bs>
 "}}}
 
 " AutoCmd{{{
@@ -110,7 +128,12 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	au Filetype asm set syntax=nasm
 
 	" don't allow colorscmemes to change the background
-	au ColorScheme * highlight Normal ctermbg=NONE guibg=NONE
+	function! ColorScheme() " executed on colorscheme command
+		highlight Normal ctermbg=NONE guibg=NONE
+		highlight Folded ctermbg=NONE
+	endfunction
+
+	au ColorScheme * call ColorScheme()
 
 	" Disable line numbers in the terminal
 	au TermOpen * setlocal nonumber norelativenumber noruler noshowmode
