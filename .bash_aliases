@@ -8,6 +8,7 @@ alias update="sudo pacman -Syu"
 alias sv="sudoedit"
 alias cr="crystal"
 alias rm="rm -I"
+alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
 
 alias py="python"
 alias ipy="ipython"
