@@ -1,7 +1,10 @@
 ! The default colors are "Gruvbox":
 ! *.color0: #1d2021
-*.color0: #282828
 
+! background for terminal, gruvbox style
+*.color0: #262626
+
+! everything else
 *.color1: #cc241d
 *.color2: #98971a
 *.color3: #d79921

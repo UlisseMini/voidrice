@@ -166,9 +166,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	au Filetype asm set syntax=nasm
 
 	func ColorScheme()
+		" never set a background for folds
 		hi Folded ctermbg=NONE guibg=NONE
-		hi Comment ctermfg=245 guifg=#928374
-		hi Normal ctermbg=NONE guibg=NONE
+
+		" use my terminals background colors not the colorschemes
+		"hi Normal ctermbg=NONE guibg=NONE
 	endf
 	au ColorScheme * call ColorScheme()
 
@@ -305,7 +307,9 @@ endfunction
 
 " Colorscheme{{{
 	set background=dark
-	" try and load the colorscheme but ignore errors
+	let g:gruvbox_italicize_comments = 1
+	let g:gruvbox_italic             = 1
+
 	silent! colo gruvbox
 "}}}
 
