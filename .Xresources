@@ -1,6 +1,6 @@
 ! The default colors are "Gruvbox":
 ! *.color0: #1d2021
-*.color0: #262626
+*.color0: #282828
 
 *.color1: #cc241d
 *.color2: #98971a

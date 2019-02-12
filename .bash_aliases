@@ -9,6 +9,7 @@ alias sv="sudoedit"
 alias cr="crystal"
 alias rm="rm -I"
 alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
+alias gruv="pushd ~/.config/nvim/plugged/gruvbox/ && echo 'popd to get back'"
 
 alias py="python"
 alias ipy="ipython"

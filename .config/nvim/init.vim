@@ -20,12 +20,18 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" Other languages
 	Plug 'https://github.com/rhysd/vim-crystal', { 'for': 'crystal' }
+	Plug 'leafo/moonscript-vim'
+	Plug 'UlisseMini/vim-pp'
 
 	" Tiny plugins
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
-	Plug 'morhetz/gruvbox' " my theme
-	Plug 'gcmt/taboo.vim'  " small plugin for custom tab names (:TabooOpen)
+	Plug 'gcmt/taboo.vim'
 	Plug 'ntpeters/vim-better-whitespace'
+
+	" ColorSchemes
+	Plug 'UlisseMini/gruvbox'
+	Plug 'altercation/vim-colors-solarized'
+	Plug 'sickill/vim-monokai'
 call plug#end()
 
 " Make deoplete load on startup
@@ -54,6 +60,11 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set history=1000             " vim ex mode history
 	set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 	set copyindent               " copy existing indentation
+
+	" use this if you want /shrug
+	"if has("termguicolors")
+	"	set termguicolors
+	"endif
 
 	" don't fill the rest of the screen with folding
 	set fillchars=fold:\ 
@@ -107,6 +118,24 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>l :ls<cr>:b
 	"nn <leader>f :tab split<cr>:<bs>
 	nn <leader>f :tab split<cr>:<bs>
+	nn <leader>b :Lexplore<cr>
+	"nn <leader>e :echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")<cr>
+	map <leader>e :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+	func TabMessage(cmd)
+		redir => message
+		silent execute a:cmd
+		redir END
+		if empty(message)
+			echoerr "no output"
+		else
+			tabnew
+			setlocal buftype=nofile bufhidden=wipe noswapfile nobuflisted nomodified
+			silent put=message
+		endif
+	endf
 
 	" toggle iferr block folding
 	func ToggleIfErr()
@@ -116,6 +145,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 			" fold all iferr blocks
 			%g/if .*err != nil.*{\_.\{-\}}/.,/}/fo
+
+			" go to where we where before the regex
+			execute "normal \<C-o>"
 		else
 			" set status
 			let b:IfErr = 0
@@ -127,16 +159,17 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>gf :call ToggleIfErr()<cr>:<bs>
 "}}}
 
+
+
 " AutoCmd{{{
 	" for some reason asm.vim in ./ftplugin was not working
 	au Filetype asm set syntax=nasm
 
-	" executed on colorscheme command
-	function! ColorScheme()
-		"highlight Normal ctermbg=NONE guibg=NONE
-		highlight Folded ctermbg=NONE
-	endfunction
-
+	func ColorScheme()
+		hi Folded ctermbg=NONE guibg=NONE
+		hi Comment ctermfg=245 guifg=#928374
+		hi Normal ctermbg=NONE guibg=NONE
+	endf
 	au ColorScheme * call ColorScheme()
 
 	" Disable line numbers in the terminal

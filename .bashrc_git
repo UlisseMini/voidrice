@@ -9,9 +9,27 @@ stty -ixon # Disable ctrl-s and ctrl-q.
 shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 HISTSIZE= HISTFILESIZE= # Infinite history.
 
+# function returns the current git branch if it exists otherwise.
+function branch() {
+	git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 # Setting Bash prompt. Capitalizes username and host if root user (my root user uses this same config file).
-if [ "$EUID" -ne 0 ]
-	then export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+if [ "$EUID" -ne 0 ]; then
+	p="\[$(tput bold)\]\[$(tput setaf 1)\]["                      # opening bracket
+	p="$p\[$(tput setaf 3)\]\u"                                   # user
+	p="$p\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h"               # hostname
+	p="$p\$(branch) "                                             # git branch
+	p="$p\[$(tput setaf 5)\]\W"                                   # working directory
+	p="$p\[$(tput setaf 1)\]]"                                    # closing bracket
+	p="$p\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"                 # ending $
+
+	export PS1="$p"
+
+	# unset p
+	p=""
+
+	# PS1 for root
 	else export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]ROOT\[$(tput setaf 2)\]@\[$(tput setaf 4)\]$(hostname | awk '{print toupper($0)}') \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 fi
 
