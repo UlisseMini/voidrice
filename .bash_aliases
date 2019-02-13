@@ -35,6 +35,25 @@ alias got="go test -race"
 alias goi="go install"
 alias gor="go run"
 
+# create git repo using hub
+function git_create() {
+	if [ "$1" == "" ]; then
+		echo "Usage: git_create <repo_name>"
+		return
+	fi
+
+	# initalize git repo if .git does not exist
+	if [ ! -f .git ]; then
+		git init
+		git add .
+		git commit -a -m "Initial commit"
+	fi
+
+	hub create "$1" 2>/dev/null
+	git remote set-url origin "https://github.com/UlisseMini/$1"
+	git push -u origin master
+}
+
 # Build and compress binaries
 function gocompress() {
 	out="${1:0:-3}"

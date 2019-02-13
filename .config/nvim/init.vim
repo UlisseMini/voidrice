@@ -99,14 +99,15 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	" Splits open at the bottom and right
 	set splitbelow splitright
 
-	" vim = best fuzzy finder
-	set path=.**
 	set wildmenu
 
 	" Tweaks for file browsing
 	let g:netrw_banner=0     " disable anoying banner
 	let g:netrw_liststyle=3  " tree view
 	let g:netrw_winsize = 25 " window size
+
+	" vim = fuzzy finder?
+	set path=.**
 "}}}
 
 " General leader bindings more in ./ftplugin/*.vim{{{
@@ -114,16 +115,17 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>s :%s///g<left><left><left>
 	nn <leader>c :noh<cr>:<bs>
 	nn <leader>a :cclose<CR>
+	nn <leader>f :find<space>
 
 	nn <leader>l :ls<cr>:b
-	"nn <leader>f :tab split<cr>:<bs>
-	nn <leader>f :tab split<cr>:<bs>
 	nn <leader>b :Lexplore<cr>
-	"nn <leader>e :echo synIDattr(synIDtrans(synID(line("."), col("."), 1)), "fg")<cr>
+
+	" show highlight group under cursor
 	map <leader>e :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
+	" useful for view the full output of :highlight
 	func TabMessage(cmd)
 		redir => message
 		silent execute a:cmd
