@@ -5,7 +5,7 @@
 export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH"
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="firefox"
+export BROWSER="google-chrome-stable"
 export READER="zathura"
 export BIB="$HOME/Documents/LaTeX/uni.bib"
 export REFER="$HOME/.referbib"

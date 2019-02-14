@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# simple
+alias py="python"
+alias ipy="ipython"
+
+alias popd="popd >/dev/null"
+alias pushd="pushd >/dev/null"
+
+alias crfmt="crystal tool format"
+
 # general
 alias reload="source ~/.bashrc"
 alias wifi="sudo wifi toggle"
@@ -10,12 +19,6 @@ alias cr="crystal"
 alias rm="rm -I"
 alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
-
-alias py="python"
-alias ipy="ipython"
-
-alias popd="popd >/dev/null"
-alias pushd="pushd >/dev/null"
 
 # for note taking
 alias todo="$EDITOR ~/.todo.md"
@@ -91,6 +94,7 @@ function asm() {
 		rm $out.o
 }
 
+# compile nasm assembly with linker
 function asmf() {
 	local out="${1:0:-4}"
 

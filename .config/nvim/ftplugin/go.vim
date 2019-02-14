@@ -16,6 +16,9 @@ let g:go_doc_keywordprg_enabled = 1 " K = godoc
 let g:go_template_autocreate = 0    " Don't use templates
 let g:go_snippet_engine = 'neosnippet'
 
+" gofmt fail silently, syntastic will check instead
+let g:go_fmt_fail_silently = 1
+
 " C O L O R S (if you want them)
 let g:go_highlight_build_constraints     = 0
 let g:go_highlight_fields                = 0
@@ -50,3 +53,18 @@ nn <leader>gd :GoDef<cr>
 nn <leader>gg :GoTests<cr>
 nn <leader>gt :GoTest<cr>
 nn <leader>gc :GoCoverage
+
+func! IfErrText()
+	let l:padding = ''
+	let i = 0
+
+	while i < v:foldlevel
+		let l:padding = l:padding . ' '
+		let i = i + 1
+	endfor
+
+	return l:padding . '// handle err'
+endf
+
+" Set foldtext
+set foldtext=IfErrText()

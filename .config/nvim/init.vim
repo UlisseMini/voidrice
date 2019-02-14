@@ -11,6 +11,8 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/neosnippet.vim'
 	Plug 'Shougo/neosnippet-snippets'
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+	Plug 'vim-syntastic/syntastic'
 
 	" Golang development (settings in ftplugin/go.vim)
 	Plug 'fatih/vim-go', { 'for': 'go' }
@@ -19,9 +21,10 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 
 	" Other languages
-	Plug 'https://github.com/rhysd/vim-crystal', { 'for': 'crystal' }
+	Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 	Plug 'leafo/moonscript-vim'
 	Plug 'UlisseMini/vim-pp'
+	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 	" Tiny plugins
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
@@ -33,6 +36,28 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'altercation/vim-colors-solarized'
 	Plug 'sickill/vim-monokai'
 call plug#end()
+
+" syntastic{{{
+let g:syntastic_go_checkers = ['gofmt']
+let g:syntastic_crystal_checkers = ['crystal']
+
+let g:syntastic_loc_list_height=3
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list            = 1
+let g:syntastic_check_on_wq              = 1
+
+" too slow! gotta go fast
+"let g:syntastic_check_on_open            = 1
+"}}}
+
+" rust{{{
+let g:rustfmt_autosave = 1
+"}}}
 
 " Make deoplete load on startup
 let g:deoplete#enable_at_startup = 1
@@ -105,9 +130,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	let g:netrw_banner=0     " disable anoying banner
 	let g:netrw_liststyle=3  " tree view
 	let g:netrw_winsize = 25 " window size
-
-	" vim = fuzzy finder?
-	set path=.**
 "}}}
 
 " General leader bindings more in ./ftplugin/*.vim{{{
@@ -115,7 +137,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>s :%s///g<left><left><left>
 	nn <leader>c :noh<cr>:<bs>
 	nn <leader>a :cclose<CR>
-	nn <leader>f :find<space>
+	nn <leader>f :FZF<cr>
 
 	nn <leader>l :ls<cr>:b
 	nn <leader>b :Lexplore<cr>
@@ -279,6 +301,10 @@ endfunction
 "}}}
 
 " Remaps{{{
+	" thou shalt use COMMAND MODE
+	nn ; :
+	nn : ;
+
 	" just in case ;)
 	com W w
 	com WQ wq
