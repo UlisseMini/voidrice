@@ -20,6 +20,10 @@ alias rm="rm -I"
 alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 
+# git
+alias gp="git push"
+alias gc="git commit"
+
 # for note taking
 alias todo="$EDITOR ~/.todo.md"
 alias cheat="$EDITOR ~/.cheatsheet.md"
