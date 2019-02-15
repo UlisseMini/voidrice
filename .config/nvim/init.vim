@@ -38,7 +38,7 @@ call plug#begin('~/.config/nvim/plugged')
 call plug#end()
 
 " syntastic{{{
-let g:syntastic_go_checkers = ['gofmt']
+let g:syntastic_go_checkers = ['gofmt', "go"]
 let g:syntastic_crystal_checkers = ['crystal']
 
 let g:syntastic_loc_list_height=3
