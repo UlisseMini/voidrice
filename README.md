@@ -4,7 +4,7 @@
 
 + i3 (i3-gaps)
 + Xresourses info used by [my st build](https://github.com/UlisseMini/st) as a terminal
-+ vim
++ neovim
 + bash
 + ranger (see full documentation [here](.config/ranger/luke_ranger_readme.md))
 + ~~mutt/msmtp/offlineimap~~ Now moved to [LukeSmithxyz/mutt-wizard](https://github.com/LukeSmithxyz/mutt-wizard)
