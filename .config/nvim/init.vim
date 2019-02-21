@@ -10,9 +10,17 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/neosnippet.vim'
-	Plug 'Shougo/neosnippet-snippets'
+	Plug 'UlisseMini/neosnippet-snippets'
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'vim-syntastic/syntastic'
+	Plug 'sheerun/vim-polyglot'
+	Plug 'christoomey/vim-tmux-navigator'
+
+	" Support for LSP Client / Server (not being used yet)
+	Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
 
 	" Golang development (settings in ftplugin/go.vim)
 	Plug 'fatih/vim-go', { 'for': 'go' }
@@ -23,8 +31,9 @@ call plug#begin('~/.config/nvim/plugged')
 	" Other languages
 	Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 	Plug 'leafo/moonscript-vim'
-	Plug 'UlisseMini/vim-pp'
+	Plug 'UlisseMini/vim-pp' " Memes
 	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+	Plug 'eagletmt/ghcmod-vim'
 
 	" Tiny plugins
 	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
@@ -32,9 +41,11 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'ntpeters/vim-better-whitespace'
 
 	" ColorSchemes
-	Plug 'UlisseMini/gruvbox'
-	Plug 'altercation/vim-colors-solarized'
+	" Plug 'UlisseMini/gruvbox'
+	Plug 'morhetz/gruvbox'
+	Plug 'romainl/flattened'
 	Plug 'sickill/vim-monokai'
+	Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " syntastic{{{
@@ -48,7 +59,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list            = 1
+
+" When set to 2 the error window will be automatically closed when no errors are
+" detected, but not opened automatically. >
+let g:syntastic_auto_loc_list            = 2
+
 let g:syntastic_check_on_wq              = 1
 
 " too slow! gotta go fast
@@ -86,10 +101,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 	set copyindent               " copy existing indentation
 
-	" use this if you want /shrug
-	"if has("termguicolors")
-	"	set termguicolors
-	"endif
+	" colors
+	if has("termguicolors")
+		set termguicolors
+	endif
 
 	" don't fill the rest of the screen with folding
 	set fillchars=fold:\ 
@@ -133,17 +148,22 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 "}}}
 
 " General leader bindings more in ./ftplugin/*.vim{{{
-	nn <C-t> :tabnew<cr>:te<cr>:<bs>i
-	nn <leader>s :%s///g<left><left><left>
+	nn <leader>s :%s//g<left><left>
 	nn <leader>c :noh<cr>:<bs>
-	nn <leader>a :cclose<CR>
 	nn <leader>f :FZF<cr>
 
+	" show syntastic errors
+	nn <leader>e :Errors<cr>
+
+	" buffer navigation
 	nn <leader>l :ls<cr>:b
-	nn <leader>b :Lexplore<cr>
+	nn <leader>a :b<space>
+
+	" open a terminal in a new tab, i use tmux so i don't use this
+	" nn <C-t> :tabnew<cr>:te<cr>:<bs>i
 
 	" show highlight group under cursor
-	map <leader>e :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+	command Hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
@@ -194,7 +214,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 		hi Folded ctermbg=NONE guibg=NONE
 
 		" use my terminals background colors not the colorschemes
-		"hi Normal ctermbg=NONE guibg=NONE
+		hi Normal      ctermbg=NONE guibg=NONE
+		hi LineNr      ctermbg=NONE guibg=NONE
+		hi TabLine     ctermbg=NONE guibg=NONE
+		hi TabLineFill ctermbg=NONE guibg=NONE
 	endf
 	au ColorScheme * call ColorScheme()
 
@@ -338,7 +361,7 @@ endfunction
 	let g:gruvbox_italicize_comments = 1
 	let g:gruvbox_italic             = 1
 
-	silent! colo gruvbox
+	silent! colo flattened_dark
 "}}}
 
 " Copy selected text to system clipboard using xclip{{{

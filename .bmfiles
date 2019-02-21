@@ -6,7 +6,7 @@ cfr	~/.config/ranger/rc.conf
 cfi	~/.config/i3/config
 cfq	~/.config/qutebrowser/config.py
 cfm	~/.config/mutt/muttrc
-cft	~/.config/termite/config
+cft	~/.tmux.conf
 eb	~/Documents/LaTeX/uni.bib
 cv	~/Documents/LaTeX/cv.tex
 cfp	~/.config/polybar/config
@@ -17,3 +17,4 @@ cfA	~/.asoundrc
 cfmb	~/.config/ncmpcpp/bindings
 cfmc	~/.config/ncmpcpp/config
 er	~/.referbib
+cfz ~/.zshrc.local

@@ -1,0 +1,25 @@
+# most importent, enable vi keybindings!
+bindkey -v
+
+# use my bash configs
+source ~/.bash_aliases
+source ~/.shortcuts.sh
+
+# setup gopath
+export GOPATH=/home/$USER/go
+export GOBIN=/home/$USER/go/bin
+
+# setup path
+export PATH=$PATH:/$GOPATH/bin:$HOME/.local/bin
+export PATH=$PATH:/home/peep/.cabal/bin
+
+# setup cdpath
+export CDPATH=$CDPATH:$GOPATH/src
+
+# add every subdirectory in $GOPATH/src/github.com to my cdpath
+for d in $GOPATH/src/github.com/*; do
+	export CDPATH=$CDPATH:$d
+done
+
+# setup fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -6,7 +6,6 @@
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
 stty -ixon # Disable ctrl-s and ctrl-q.
-shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 HISTSIZE= HISTFILESIZE= # Infinite history.
 
 # function returns the current git branch if it exists otherwise.
@@ -50,11 +49,13 @@ export GOPATH=/home/$USER/go
 export GOBIN=/home/$USER/go/bin
 
 # path
-export PATH=$PATH:/$HOME/go/bin:$HOME/.local/bin
+export PATH=$PATH:/$GOPATH/bin:$HOME/.local/bin
+export PATH=$PATH:/home/peep/.cabal/bin
 
 # cdpath
 export CDPATH=$CDPATH:$GOPATH/src
 
+# add every subdirectory in $GOPATH/src/github.com to $CDPATH
 for d in $GOPATH/src/github.com/*
 do
 	export CDPATH=$CDPATH:$d

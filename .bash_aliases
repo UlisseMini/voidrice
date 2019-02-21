@@ -19,6 +19,7 @@ alias cr="crystal"
 alias rm="rm -I"
 alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
+alias l="clear"
 
 # git
 alias gp="git push"
@@ -122,14 +123,28 @@ function ci() {
 	c $1 && mv ./${1:0:-2} ~/.local/bin
 }
 
+# Haskell smh
+function ghc() {
+	# get the parent directory, this will be used for the output binary
+	parent=${PWD##*/}
+
+	/bin/ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc -o "$parent" "$@"
+}
+
+alias cb="cabal build --ghc-option=-dynamic"
+
+
 # killall function, that ACTUALLY kills all
 function ka() {
 	while true; do
-		killall $1 || return
-		sleep 0.1
-		killall -9 $1 || return
+		# if killall fails then return
+		killall $1 2>/dev/null || break
 		sleep 0.1
 	done
+
+	# show the processes
+	echo "ps awx | grep $1"
+	ps awx | grep "$1"
 }
 
 # brightness not working on my macbook, this is my workaround.
