@@ -25,8 +25,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 [ ! -f ~/.shortcuts ] && shortcuts >/dev/null 2>&1
 
-[ -f ~/.bashrc ] && source ~/.bashrc
-
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
 

@@ -2,7 +2,7 @@
 bindkey -v
 
 # use my bash configs
-source ~/.bash_aliases
+source ~/.zsh_aliases
 source ~/.shortcuts.sh
 
 # setup gopath
