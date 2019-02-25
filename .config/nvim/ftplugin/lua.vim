@@ -6,7 +6,7 @@ if executable("luvit")
 endif
 
 " TODO: Call the lua program in a new terminal (vsplit or tab)
-func LuaRun()
+func! LuaRun()
 	:exe "!" . expand(s:lua) . " " . shellescape(expand("%"))
 endf
 
