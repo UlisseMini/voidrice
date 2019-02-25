@@ -6,7 +6,7 @@ set expandtab
 
 " General
 nn <leader>gb :!crystal build %<cr>
-nn <leader>gr :!crystal run %<cr>
+nn <leader>r :!crystal run %<cr>
 
 " Navigation
 nn <leader>gh :CrystalHierarchy<space>

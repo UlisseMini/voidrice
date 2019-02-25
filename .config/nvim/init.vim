@@ -6,21 +6,22 @@
 
 " Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
+	" TODO Figure out how to make deoplete non slow.
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
 	" General
 	Plug 'tpope/vim-surround'
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 	Plug 'Shougo/neosnippet.vim'
 	Plug 'UlisseMini/neosnippet-snippets'
 	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 	Plug 'vim-syntastic/syntastic'
 	Plug 'sheerun/vim-polyglot'
-	Plug 'christoomey/vim-tmux-navigator'
 
 	" Support for LSP Client / Server (not being used yet)
-	Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+	"Plug 'autozimu/LanguageClient-neovim', {
+    "\ 'branch': 'next',
+    "\ 'do': './install.sh'
+    "\ }
 
 	" Golang development (settings in ftplugin/go.vim)
 	Plug 'fatih/vim-go', { 'for': 'go' }
@@ -33,16 +34,16 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'leafo/moonscript-vim'
 	Plug 'UlisseMini/vim-pp' " Memes
 	Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-	Plug 'eagletmt/ghcmod-vim'
+	Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 
 	" Tiny plugins
-	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 	Plug 'gcmt/taboo.vim'
 	Plug 'ntpeters/vim-better-whitespace'
+	Plug 'christoomey/vim-tmux-navigator'
+	Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 
 	" ColorSchemes
-	" Plug 'UlisseMini/gruvbox'
-	Plug 'morhetz/gruvbox'
+	Plug 'UlisseMini/gruvbox'
 	Plug 'romainl/flattened'
 	Plug 'sickill/vim-monokai'
 	Plug 'joshdick/onedark.vim'
@@ -77,6 +78,9 @@ let g:rustfmt_autosave = 1
 " Make deoplete load on startup
 let g:deoplete#enable_at_startup = 1
 set pumheight=10 " Completion window max size
+
+" change the deoplete delay before autocomplete
+let g:deoplete#auto_complete_delay = 0
 
 " Make neosnippet use tabs for expanding snippets
 imap <expr><TAB>
@@ -156,8 +160,8 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 	nn <leader>e :Errors<cr>
 
 	" buffer navigation
-	nn <leader>l :ls<cr>:b
-	nn <leader>a :b<space>
+	nn <leader>l :ls<cr>:b<space>
+	nn <leader>n :bn<cr>
 
 	" open a terminal in a new tab, i use tmux so i don't use this
 	" nn <C-t> :tabnew<cr>:te<cr>:<bs>i
@@ -347,7 +351,7 @@ endfunction
 
 	" Bindings to make copying and pasting easier
 	vnoremap <C-c> "+y
-	" inoremap <C-v> <esc>"+p
+	inoremap <C-v> <esc>"+p
 
 	" Center the screen when searching
 	nnoremap n nzzzv
@@ -361,7 +365,7 @@ endfunction
 	let g:gruvbox_italicize_comments = 1
 	let g:gruvbox_italic             = 1
 
-	silent! colo flattened_dark
+	colo flattened_dark
 "}}}
 
 " Copy selected text to system clipboard using xclip{{{
