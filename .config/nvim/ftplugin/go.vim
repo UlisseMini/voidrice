@@ -11,6 +11,11 @@
 " ==============================================================================
 " ...is awesome
 
+" docs say this requires noshowmode
+let g:go_echo_go_info      = 0
+let g:go_echo_command_info = 0
+
+
 " vim-go settings
 let g:go_doc_keywordprg_enabled = 1 " K = godoc
 let g:go_template_autocreate = 0    " Don't use templates

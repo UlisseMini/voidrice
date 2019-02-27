@@ -1,8 +1,8 @@
 " Run `crystal tool format` on save
 "let g:crystal_auto_format = 1
 
-set tabstop=2
-set expandtab
+" tab settings
+set ts=2 sw=2 et
 
 " General
 nn <leader>gb :!crystal build %<cr>

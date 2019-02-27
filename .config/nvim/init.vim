@@ -17,11 +17,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-syntastic/syntastic'
   Plug 'sheerun/vim-polyglot'
 
-  " Support for LSP Client / Server (not being used yet)
-  "Plug 'autozimu/LanguageClient-neovim', {
-    "\ 'branch': 'next',
-    "\ 'do': './install.sh'
-    "\ }
+  " Support for LSP Client / Server
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
 
   " Golang development (settings in ftplugin/go.vim)
   Plug 'fatih/vim-go', { 'for': 'go' }
@@ -66,9 +66,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list            = 2
 
 let g:syntastic_check_on_wq              = 1
+"}}}
 
-" too slow! gotta go fast
-"let g:syntastic_check_on_open            = 1
+" LanguageClient {{{
+let g:LanguageClient_settingsPath=expand("~/.config/nvim/languageClient.json")
 "}}}
 
 " rust{{{
@@ -104,6 +105,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
   set history=1000             " vim ex mode history
   set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
   set copyindent               " copy existing indentation
+  set nowrap                   " don't wrap lines that go off the screen
 
   " colors
   if has("termguicolors")
@@ -349,8 +351,8 @@ endfunction
   " next error in quickfix
   nnoremap J :cn<cr>:<bs>
 
-  " exit terminal mode with control a
-  tnoremap <C-a> <C-\><C-n>
+  " exit terminal mode with control e
+  tnoremap <C-e> <C-\><C-n>
 
   " Bindings to make copying and pasting easier
   vnoremap <C-c> "+y
