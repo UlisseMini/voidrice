@@ -4,13 +4,13 @@ set expandtab
 
 let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
 
-func! HaskellRun()
-    exe "sp term://ghci " . shellescape(expand("%")) . " -v0"
-    " start inserting in the terminal.
+func! Ghci( ... )
+    exe "sp term://ghci " . shellescape( expand( join(a:000) ) ) . " -v0" . 
     norm! A
 endf
 
 " mappings
 nn <leader>f :call LanguageClient#textDocument_formatting()<cr>
-nn <leader>gb :!ghc -dynamic %<cr>
-nn <leader>r :call HaskellRun()<cr>
+nn <leader>gb :!ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc %<cr>
+nn <leader>r :call Ghci("%")<cr>
+nn <leader>i :call Ghci()<cr>

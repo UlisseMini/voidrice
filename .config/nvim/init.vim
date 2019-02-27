@@ -105,7 +105,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
   set history=1000             " vim ex mode history
   set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
   set copyindent               " copy existing indentation
-  set nowrap                   " don't wrap lines that go off the screen
 
   " colors
   if has("termguicolors")
@@ -161,6 +160,10 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
   nn <leader>c :noh<cr>:<bs>
   nn <leader>f :FZF<cr>
 
+  " execute vimscript under cursor (register ")
+  nn <leader>g Y:@"<cr>
+  vn <leader>g y:@"<cr>
+
   " show syntastic errors
   nn <leader>e :Errors<cr>
 
@@ -174,7 +177,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
   " show highlight group under cursor
   command Hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
   " useful for view the full output of :highlight
   func TabMessage(cmd)
@@ -333,9 +336,13 @@ endfunction
 "}}}
 
 " Remaps{{{
-  " thou shalt use COMMAND MODE
+  " easier command-mode
   nn ; :
   nn : ;
+
+  " better marks
+  nn ' `
+  nn ` '
 
   " just in case ;)
   com W w
