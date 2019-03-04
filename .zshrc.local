@@ -2,6 +2,9 @@
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
+# slurp slurp that fzf
+source ~/.fzf/shell/key-bindings.zsh
+
 # use my bash configs
 source ~/.zsh_aliases
 source ~/.shortcuts.sh
