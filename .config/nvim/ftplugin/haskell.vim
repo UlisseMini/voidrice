@@ -20,7 +20,7 @@ func! HideErrors()
 endf
 
 func! Ghci( ... )
-    exe "sp term://ghci " . shellescape( expand( join(a:000) ) ) . " -v0"
+    exe "sp term://stack ghci " . shellescape( expand( join(a:000) ) ) . " --ghci-options=-v0"
     norm! A
 endf
 
