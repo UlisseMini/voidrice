@@ -18,10 +18,10 @@ Plug 'vim-syntastic/syntastic'
 Plug 'sheerun/vim-polyglot'
 
 " Support for LSP Client / Server
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': './install.sh'
-      \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"      \ 'branch': 'next',
+"      \ 'do': './install.sh'
+"      \ }
 
 " Golang development (settings in ftplugin/go.vim)
 Plug 'fatih/vim-go', { 'for': 'go' }
@@ -34,7 +34,7 @@ Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim'
 Plug 'UlisseMini/vim-pp' " Memes
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'meck/vim-brittany'
 
 " Tiny plugins
 Plug 'gcmt/taboo.vim'
@@ -106,6 +106,7 @@ set hidden
 set history=1000             " vim ex mode history
 set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 set copyindent               " copy existing indentation
+set linebreak
 
 command Nm set number! relativenumber!
 
@@ -343,9 +344,6 @@ endfunction
 "}}}
 
 " Remaps{{{
-" save file with return
-nn <cr> :w<cr>
-
 " easier command-mode
 nn ; :
 nn : ;
