@@ -34,7 +34,6 @@ Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim'
 Plug 'UlisseMini/vim-pp' " Memes
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'meck/vim-brittany'
 
 " Tiny plugins
 Plug 'gcmt/taboo.vim'

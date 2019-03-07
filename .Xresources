@@ -30,3 +30,6 @@
 *.alpha: 255
 ! Set a default font and font size as below:
 *.font: monospace-40
+
+! Fix emacs
+Emacs.alpha: 90
