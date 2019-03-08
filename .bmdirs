@@ -2,7 +2,6 @@
 h	~/
 D	~/Downloads
 vv	~/Videos
-cf	~/.config
 vrc ~/.config/nvim
 
 sc	~/.scripts

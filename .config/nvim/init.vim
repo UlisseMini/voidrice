@@ -344,10 +344,6 @@ endfunction
 "}}}
 
 " Remaps{{{
-" easier command-mode
-nn ; :
-nn : ;
-
 " better marks
 nn ' `
 nn ` '
