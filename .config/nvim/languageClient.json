@@ -1,6 +1,0 @@
-{
-    "languageServerHaskell": {
-        "hlintOn": false,
-        "maxNumberOfProblems": 100
-    }
-}

@@ -130,6 +130,8 @@ function ghc() {
 	stack ghc -- --make -odir /tmp/ghc/ -hidir /tmp/ghc -o "$parent" "$@"
 }
 
+function ghci() { stack ghci --ghci-options=-v0 }
+
 function cb() {
     out=$(stack --stack-yaml stack.yaml path --local-install-root)
 	mkdir -p ./bin            || return
@@ -146,7 +148,7 @@ function ka() {
 	done
 
 	# show the processes
-	echo "ps awx | grep $1"
+	echo "ps awx | grep -i \"$1\""
 	ps awx | grep "$1"
 }
 
