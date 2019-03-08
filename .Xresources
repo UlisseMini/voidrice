@@ -2,8 +2,11 @@
 ! NOTE color0 = background
 ! *.color0: #1d2021
 
+! Same as emacs gruber-dark
+*.color0: #181818
+
 ! flattened_dark
-*.color0: #002b36
+! *.color0: #002b36
 
 ! gruvbox
 ! *.color0: #262626

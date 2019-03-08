@@ -42,6 +42,15 @@ alias got="go test -race"
 alias goi="go install"
 alias gor="go run"
 
+function cf() {
+	if [ "$1" == "" ]; then
+		echo "Usage: cf <file.vim>"
+		return
+	fi
+
+    $EDITOR ~/.config/nvim/ftplugin/$1
+}
+
 # create git repo using hub
 function git_create() {
 	if [ "$1" == "" ]; then
@@ -143,7 +152,7 @@ function cb() {
 function ka() {
 	while true; do
 		# if killall fails then return
-		killall $1 2>/dev/null || break
+		killall $@ 2>/dev/null || break
 		sleep 0.1
 	done
 
