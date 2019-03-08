@@ -16,6 +16,7 @@ Plug 'UlisseMini/neosnippet-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-syntastic/syntastic'
 Plug 'sheerun/vim-polyglot'
+Plug 'itchyny/lightline.vim'
 
 " Support for LSP Client / Server
 Plug 'autozimu/LanguageClient-neovim', {
