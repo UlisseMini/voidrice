@@ -66,17 +66,17 @@
 (use-package evil
   :config
 	;; Enable evil-mode
-	;;(require 'evil)
-
 	(evil-mode t)
 	(setq evil-want-C-i-jump nil)
 
-	;; Remaps
-	(with-eval-after-load 'evil-maps
-	  ;; TODO: Find a way to bind stuff to <SPACE>+prefix
-		(define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
-		)
-	)
+    ;; Remaps
+    (with-eval-after-load 'evil-maps
+        ;; TODO: Find a way to bind stuff to <SPACE>+prefix
+        (define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
+        (define-key evil-normal-state-map "gd" nil)
+        (define-key evil-normal-state-map "gd" 'xref-find-definitions)
+        )
+    )
 
 ;; org-mode packages
 (use-package ob-go :ensure)
@@ -103,7 +103,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
+	(evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
