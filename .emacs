@@ -51,10 +51,24 @@
 (use-package evil
   :config
 	;; Enable evil-mode
-	;;(require 'evil)
-
 	(evil-mode t)
-	(setq evil-want-C-i-jump nil))
+	(setq evil-want-C-i-jump nil)
+
+	;; Remappings
+	(define-key evil-normal-state-map "gd" nil)
+	(define-key evil-normal-state-map "gd" 'xref-find-definitions)
+	)
+
+(use-package evil-leader
+  :ensure
+  :config
+  (evil-leader/set-leader "<SPC>")
+
+  (evil-leader/set-key
+	"b" 'switch-to-buffer)
+
+  (global-evil-leader-mode))
+
 
 ;; org-mode packages
 (use-package ob-go :ensure)
@@ -81,7 +95,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
+	(evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
