@@ -1,8 +1,23 @@
+;; Basic settings
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
 (setq-default tab-width 4)
+
+;; Add go/bin to the path
+(setenv "PATH" (concat (getenv "PATH") "~/go/bin"))
+(setq exec-path (append exec-path '("~/go/bin")))
+
+;; generate ctags
+(setq path-to-ctags "/usr/bin/ctags")
+
+(defun create-tags (dir-name)
+"Create tags file."
+(interactive "DDirectory: ")
+(shell-command
+	(format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
+)
 
 ;; Set transparency of emacs
 (defun transparency (value)
@@ -54,7 +69,14 @@
 	;;(require 'evil)
 
 	(evil-mode t)
-	(setq evil-want-C-i-jump nil))
+	(setq evil-want-C-i-jump nil)
+
+	;; Remaps
+	(with-eval-after-load 'evil-maps
+	  ;; TODO: Find a way to bind stuff to <SPACE>+prefix
+		(define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
+		)
+	)
 
 ;; org-mode packages
 (use-package ob-go :ensure)
