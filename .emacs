@@ -5,6 +5,8 @@
 (blink-cursor-mode 0)
 (setq-default tab-width 4)
 
+(setq backup-directory-alist `(("." . "~/.emacs_backup")))
+
 ;; Add go/bin to the path
 (setenv "PATH" (concat (getenv "PATH") "~/go/bin"))
 (setq exec-path (append exec-path '("~/go/bin")))
