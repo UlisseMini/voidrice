@@ -1,16 +1,12 @@
 #!/bin/bash
 
-# simple
+# general
 alias py="python"
 alias ipy="ipython"
 alias tm="tmux"
-
+alias i3restart="killall -2 i3"
 alias crfmt="crystal tool format"
-
-# i'm lovin it
 alias luv="luvit"
-
-# general
 alias reload="source ~/.zshrc"
 alias wifi="sudo wifi toggle"
 alias g="hub"
