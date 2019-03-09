@@ -16,7 +16,6 @@ Plug 'UlisseMini/neosnippet-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-syntastic/syntastic'
 Plug 'sheerun/vim-polyglot'
-Plug 'itchyny/lightline.vim'
 
 " Support for LSP Client / Server
 "Plug 'autozimu/LanguageClient-neovim', {
@@ -45,8 +44,6 @@ Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 " ColorSchemes
 Plug 'UlisseMini/gruvbox'
 Plug 'romainl/flattened'
-Plug 'sickill/vim-monokai'
-Plug 'joshdick/onedark.vim'
 call plug#end()
 
 " syntastic{{{
@@ -227,17 +224,18 @@ nn <leader>gf :call ToggleIfErr()<cr>:<bs>
 au Filetype asm set syntax=nasm
 
 func ColorScheme()
-  " never set a background for folds
-  hi! Folded ctermbg=NONE guibg=NONE
-
   " use my terminals background colors not the colorschemes
-  hi! Normal      ctermbg=NONE guibg=NONE
-  hi! LineNr      ctermbg=NONE guibg=NONE
-  hi! TabLine     ctermbg=NONE guibg=NONE
+  hi! Normal       ctermbg=NONE guibg=NONE
+  hi! LineNr       ctermbg=NONE guibg=NONE
+  hi! TabLine      ctermbg=NONE guibg=NONE
   hi! TabLineFill  ctermbg=NONE guibg=NONE
   hi! VertSplit    ctermbg=NONE guibg=NONE
   hi! StatusLine   gui=NONE cterm=NONE
+  hi! Folded       ctermbg=NONE guibg=NONE
+
+  " Link some things
   hi! link StatusLineNC StatusLine
+  hi! link vimfunction Function
 endf
 au ColorScheme * call ColorScheme()
 
@@ -254,93 +252,6 @@ augroup QFix
   autocmd!
   autocmd FileType qf setlocal nobuflisted
 augroup END
-"}}}
-
-" Binary editing{{{
-" shortcut commands
-command -bar Hex call ToggleHex()
-command -bar Binary call ToggleBin()
-
-" http://vim.wikia.com/wiki/Improved_hex_editing
-function ToggleHex()
-  " hex mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editHex") || !b:editHex
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries
-    "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editHex=1
-    " switch to hex editor
-    %!xxd
-  else
-    " restore old options
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editHex=0
-    " return to normal editing
-    %!xxd -r
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
-
-function ToggleBin()
-  " bin mode should be considered a read-only operation
-  " save values for modified and read-only for restoration later,
-  " and clear the read-only flag for now
-  let l:modified=&mod
-  let l:oldreadonly=&readonly
-  let &readonly=0
-  let l:oldmodifiable=&modifiable
-  let &modifiable=1
-  if !exists("b:editBin") || !b:editBin
-    " save old options
-    let b:oldft=&ft
-    let b:oldbin=&bin
-    " set new options
-    setlocal binary       " make sure it overrides any textwidth, etc.
-    silent :e " this will reload the file without trickeries
-    "(DOS line endings will be shown entirely )
-    let &ft="xxd"
-    " set status
-    let b:editBin=1
-    " switch to binary editor
-    %!xxd -b
-    setlocal nomodifiable " editing binary is not supported
-  else
-    " restore old options
-    setlocal modifiable
-    let &ft=b:oldft
-    if !b:oldbin
-      setlocal nobinary
-    endif
-    " set status
-    let b:editBin=0
-    " return to normal editing (reload file)
-    edit!
-  endif
-  " restore values for modified and read only state
-  let &mod=l:modified
-  let &readonly=l:oldreadonly
-  let &modifiable=l:oldmodifiable
-endfunction
 "}}}
 
 " Remaps{{{
