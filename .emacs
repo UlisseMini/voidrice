@@ -71,6 +71,7 @@
 
 (use-package flycheck :ensure
   :config
+	(setq flycheck-check-syntax-automatically '(mode-enabled save))
 	(add-hook 'after-init-hook #'global-flycheck-mode)
   )
 (use-package helm
