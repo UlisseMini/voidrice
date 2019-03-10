@@ -1,4 +1,3 @@
-;; Basic settings
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
@@ -23,7 +22,7 @@
 
 ;; Set transparency of emacs
 (defun transparency (value)
-	"Sets the transparency of the frame window. 0=transparent/100=opaque"
+	"Sets the transparency of the frame window.  0=transparent/100=opaque"
 	(interactive "nTransparency Value 0 - 100 opaque:")
 	(set-frame-parameter (selected-frame) 'alpha value))
 
@@ -47,7 +46,22 @@
   (require 'use-package))
 
 ;; Packages
-(use-package haskell-mode :ensure)
+(use-package haskell-mode :ensure
+  :config
+	(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+
+	;; Ignore compiled Haskell files in filename completions
+	(add-to-list 'completion-ignored-extensions ".hi")
+
+	;; https://github.com/rexim/dotfiles/blob/master/.emacs.rc/haskell-mode-rc.el
+	(setq haskell-process-type 'stack-ghci)
+	(setq haskell-process-log t)
+
+	(add-hook 'haskell-mode-hook 'haskell-indent-mode)
+	(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+	(add-hook 'haskell-mode-hook 'haskell-doc-mode)
+	(add-hook 'haskell-mode-hook 'hindent-mode)
+  )
 (use-package lua-mode     :ensure)
 (use-package rust-mode    :ensure)
 (use-package go-mode      :ensure
@@ -55,7 +69,10 @@
 	(add-hook 'before-save-hook 'gofmt-before-save)
 	(setq gofmt-command "goimports"))
 
-(use-package flycheck :ensure)
+(use-package flycheck :ensure
+  :config
+	(add-hook 'after-init-hook #'global-flycheck-mode)
+  )
 (use-package helm
   :config
 	;; Enable helm
