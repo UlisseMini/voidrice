@@ -24,6 +24,8 @@ alias dc="fzf | xargs -r cd"
 # git
 alias gp="git push"
 alias gc="git commit"
+alias gm="git merge"
+alias gu="git pull"
 
 # for note taking
 alias todo="$EDITOR ~/.todo.md"
