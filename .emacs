@@ -62,9 +62,10 @@
 	(add-hook 'haskell-mode-hook 'haskell-doc-mode)
 	(add-hook 'haskell-mode-hook 'hindent-mode)
   )
-(use-package lua-mode     :ensure)
-(use-package rust-mode    :ensure)
-(use-package go-mode      :ensure
+(use-package markdown-mode :ensure)
+(use-package lua-mode      :ensure)
+(use-package rust-mode     :ensure)
+(use-package go-mode       :ensure
   :config
 	(add-hook 'before-save-hook 'gofmt-before-save)
 	(setq gofmt-command "goimports"))
@@ -124,7 +125,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
+	(markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
