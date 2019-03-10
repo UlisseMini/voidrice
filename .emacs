@@ -47,14 +47,15 @@
   (require 'use-package))
 
 ;; Packages
-(use-package haskell-mode)
-(use-package lua-mode)
-(use-package rust-mode :ensure)
-(use-package go-mode
+(use-package haskell-mode :ensure)
+(use-package lua-mode     :ensure)
+(use-package rust-mode    :ensure)
+(use-package go-mode      :ensure
   :config
 	(add-hook 'before-save-hook 'gofmt-before-save)
 	(setq gofmt-command "goimports"))
 
+(use-package flycheck :ensure)
 (use-package helm
   :config
 	;; Enable helm
@@ -74,9 +75,9 @@
     ;; Remaps
     (with-eval-after-load 'evil-maps
         ;; TODO: Find a way to bind stuff to <SPACE>+prefix
-        (define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
         (define-key evil-normal-state-map "gd" nil)
-        (define-key evil-normal-state-map "gd" 'xref-find-definitions)
+        ;; (define-key evil-normal-state-map "gd" 'xref-find-definitions)
+        (define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
         )
     )
 
@@ -105,7 +106,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
+	(flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
