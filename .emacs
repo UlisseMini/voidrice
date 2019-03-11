@@ -50,6 +50,7 @@
 (setq use-package-always-ensure t)
 
 ;; Packages
+(use-package gruber-darker-theme)
 (use-package haskell-mode
   :config
 	(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
