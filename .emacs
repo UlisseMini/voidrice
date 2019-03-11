@@ -45,32 +45,38 @@
 (eval-when-compile
   (require 'use-package))
 
+;; use-package configuration
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+
 ;; Packages
-(use-package haskell-mode :ensure
+(use-package haskell-mode
   :config
 	(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
 	;; Ignore compiled Haskell files in filename completions
 	(add-to-list 'completion-ignored-extensions ".hi")
 
-	;; https://github.com/rexim/dotfiles/blob/master/.emacs.rc/haskell-mode-rc.el
 	(setq haskell-process-type 'stack-ghci)
 	(setq haskell-process-log t)
 
+	;; https://github.com/rexim/dotfiles/blob/master/.emacs.rc/haskell-mode-rc.el
 	(add-hook 'haskell-mode-hook 'haskell-indent-mode)
 	(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 	(add-hook 'haskell-mode-hook 'haskell-doc-mode)
 	(add-hook 'haskell-mode-hook 'hindent-mode)
+  :bind (:map haskell-mode-map
+	("C-c C-l" . haskell-process-load-file))
   )
-(use-package markdown-mode :ensure)
-(use-package lua-mode      :ensure)
-(use-package rust-mode     :ensure)
-(use-package go-mode       :ensure
+(use-package markdown-mode )
+(use-package lua-mode      )
+(use-package rust-mode     )
+(use-package go-mode
   :config
 	(add-hook 'before-save-hook 'gofmt-before-save)
 	(setq gofmt-command "goimports"))
 
-(use-package flycheck :ensure
+(use-package flycheck
   :config
 	(setq flycheck-check-syntax-automatically '(mode-enabled save))
 	(add-hook 'after-init-hook #'global-flycheck-mode)
@@ -94,17 +100,14 @@
     ;; Remaps
     (with-eval-after-load 'evil-maps
         ;; TODO: Find a way to bind stuff to <SPACE>+prefix
-        (define-key evil-normal-state-map "gd" nil)
-        ;; (define-key evil-normal-state-map "gd" 'xref-find-definitions)
         (define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
         )
     )
 
 ;; org-mode packages
-(use-package ob-go :ensure)
-(use-package ob-rust :ensure)
+(use-package ob-go )
+(use-package ob-rust )
 (use-package org-bullets
-  :ensure
   :config
     ;; Enable org-bullets in org mode
 	(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
