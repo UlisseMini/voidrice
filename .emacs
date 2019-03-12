@@ -1,5 +1,11 @@
+;; Disable scroll bar in new frames
+(defun my/disable-scroll-bars (frame)
+  (modify-frame-parameters frame
+                           '((vertical-scroll-bars . nil)
+                             (horizontal-scroll-bars . nil))))
+(add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
+
 (menu-bar-mode -1)
-(toggle-scroll-bar -1)
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
 (setq-default tab-width 4)
@@ -70,8 +76,8 @@
 	("C-c C-l" . haskell-process-load-file))
   )
 (use-package markdown-mode )
-(use-package lua-mode      )
-(use-package rust-mode     )
+(use-package lua-mode)
+(use-package rust-mode)
 (use-package go-mode
   :config
 	(add-hook 'before-save-hook 'gofmt-before-save)
@@ -107,8 +113,8 @@
 
 ;; org-mode packages
 (use-package htmlize)
-(use-package ob-go )
-(use-package ob-rust )
+(use-package ob-go)
+(use-package ob-rust)
 (use-package org-bullets
   :config
     ;; Enable org-bullets in org mode
@@ -124,6 +130,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-enabled-themes (quote (gruber-darker)))
  '(custom-safe-themes
    (quote
 	("47ec21abaa6642fefec1b7ace282221574c2dd7ef7715c099af5629926eb4fd7" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
@@ -138,5 +145,4 @@
  ;; If there is more than one, they won't work right.
  )
 
-;; Enable my theme
-(load-theme 'gruber-darker)
+;;; .emacs ends here
