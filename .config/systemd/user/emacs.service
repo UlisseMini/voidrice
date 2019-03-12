@@ -1,0 +1,15 @@
+[Unit]
+Description=Emacs text editor
+Documentation=info:emacs man:emacs(1) https://gnu.org/software/emacs/
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/emacs --fg-daemon
+ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+Environment=SSH_AUTH_SOCK=%t/keyring/ssh
+Environment=PATH=/home/peep/.scripts/statusbar:/home/peep/.scripts/i3cmds:/home/peep/.scripts/.getkeys:/home/peep/.scripts/tools:/home/peep/.scripts/cron:/home/peep/.scripts/:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl://home/peep/go/bin:/home/peep/.local/bin:/home/peep/.cabal/bin
+
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
