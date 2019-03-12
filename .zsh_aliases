@@ -40,7 +40,7 @@ alias got="go test -race"
 alias goi="go install"
 alias gor="go run"
 
-function cf() {
+cf() {
 	if [ "$1" == "" ]; then
 		echo "Usage: cf <file.vim>"
 		return
@@ -50,7 +50,7 @@ function cf() {
 }
 
 # create git repo using hub
-function git_create() {
+git_create() {
 	if [ "$1" == "" ]; then
 		echo "Usage: git_create <repo_name>"
 		return
@@ -69,7 +69,7 @@ function git_create() {
 }
 
 # Build and compress binaries
-function gocompress() {
+gocompress() {
 	out="${1:0:-3}"
 	if [[ "$GOOS" == "windows" ]]; then
 		out="$out.exe"
@@ -90,14 +90,14 @@ alias vim="$EDITOR"
 alias nvim="$EDITOR"
 
 # make directory then cd into it
-function mc() {
+mc() {
 	mkdir -p $1 && \
 		cd $1
 }
 
 # make it easier to compile assembly progams
 # i use the extention .asm so i'll trim the last 4 chars.
-function asm() {
+asm() {
 	local out="${1:0:-4}"
 
 	nasm -f elf64 "$1" -o $out.o && \
@@ -106,7 +106,7 @@ function asm() {
 }
 
 # compile nasm assembly with linker
-function asmf() {
+asmf() {
 	local out="${1:0:-4}"
 
 	nasm  -f elf64 "$1" -o $out.o && \
@@ -115,31 +115,31 @@ function asmf() {
 }
 
 # disassemble programs with gdb, kinda a hack -- idc
-function disassemble() {
+disassemble() {
 	echo "quit" | gdb -q -ex "disassemble main" $1 | tail -n +2 | head -n -1
 }
 
 # make it easier to compile C programs
-function c() {
+c() {
 	gcc -Wall "$1" -o "${1:0:-2}"
 }
 
 # compile and install C program to path
-function ci() {
+ci() {
 	c $1 && mv ./${1:0:-2} ~/.local/bin
 }
 
 # Haskell smh
-function ghc() {
+ghc() {
 	# get the parent directory, this will be used for the output binary
 	parent=${PWD##*/}
 
 	stack ghc -- --make -odir /tmp/ghc/ -hidir /tmp/ghc -o "$parent" "$@"
 }
 
-function ghci() { stack ghci --ghci-options=-v0 }
+ghci() { stack ghci --ghci-options=-v0 }
 
-function cb() {
+cb() {
     out=$(stack --stack-yaml stack.yaml path --local-install-root)
 	mkdir -p ./bin            || return
     stack build --force-dirty || return
@@ -147,7 +147,7 @@ function cb() {
 }
 
 # killall function, that ACTUALLY kills all
-function ka() {
+ka() {
 	while true; do
 		# if killall fails then return
 		killall $@ 2>/dev/null || break
@@ -155,16 +155,15 @@ function ka() {
 	done
 
 	# show the processes
-	echo "ps awx | grep -i \"$1\""
+	echo "ps awx | grep -i \"$1\" | grep -vi grep"
 	ps awx | grep "$1"
 }
 
 # brightness not working on my macbook, this is my workaround.
-function brightness() {
+brightness() {
 	sudo bash -c "echo '$1' > /sys/class/backlight/intel_backlight/brightness" &&
 		cat "/sys/class/backlight/intel_backlight/brightness"
 }
-
 
 # Youtube stuffs
 alias yt="youtube-dl --add-metadata -ic" # Download video link
@@ -178,18 +177,3 @@ alias diff="diff --color=auto"
 
 # Color cat - print file with syntax highlighting.
 alias ccat="highlight --out-format=ansi -t 4"
-
-## Docker ##
-function dockerstopall() {
-	docker stop $(docker ps -q)
-}
-
-function dockerclean() {
-	# sometimes containers will not be running
-	# if thats the case we don't want to see the
-	# "docker stop" requires at least 1 argument. error message.
-	dockerstopall 2>/dev/null
-
-	# delete all the containers (will prompt user)
-	docker container prune
-}
