@@ -106,6 +106,7 @@
     )
 
 ;; org-mode packages
+(use-package htmlize)
 (use-package ob-go )
 (use-package ob-rust )
 (use-package org-bullets
@@ -129,7 +130,7 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-	(markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
+	(htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode solarized-theme haskell-mode gruber-darker-theme evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
