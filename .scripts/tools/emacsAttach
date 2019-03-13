@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# if emacs is not running then start it as a daemon
-pidof emacs || \
-    # start the emacs daemon
-    emacs --daemon 2>/dev/null 1>&2
-
-# connect to the running emacs instance
-exec emacsclient $@
