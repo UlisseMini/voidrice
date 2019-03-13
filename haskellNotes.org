@@ -1,0 +1,23 @@
+* Monad composition
+  (>>) :: Monad m => m a -> m b -> m b
+  sort of like semicolon, do one IO action then another.
+	#+BEGIN_SRC haskell
+	  main :: IO ()
+	  main = do
+		putStr "Hello" >> putStrLn " World"
+	#+END_SRC
+
+
+	(>>=) :: Monad m => m a -> (a -> m b) -> m b
+	do one IO action then send the output to another IO action
+	#+BEGIN_SRC haskell
+	  main :: IO ()
+	  main = do
+		getLine >>= putStrLn
+	#+END_SRC
+
+* Maybe
+  maybe :: b -> (a -> b) -> Maybe a -> b
+  maybe takes a value to use when a is Nothing (a default) then checks
+  if a is Not nothing, if it is not nothing it will call the function provided with
+  the value, otherwise it returns the default value *without passing it through the function*.
