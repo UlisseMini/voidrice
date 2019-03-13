@@ -155,8 +155,7 @@ ka() {
 	done
 
 	# show the processes
-	echo "ps awx | grep -i \"$1\" | grep -vi grep"
-	ps awx | grep "$1"
+	ps awx | grep -v grep | grep "$1"
 }
 
 # brightness not working on my macbook, this is my workaround.
