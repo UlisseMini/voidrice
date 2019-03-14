@@ -1,4 +1,3 @@
-;;; Disable gui stuff
 ;; Disable scroll bar all frames
 (defun my/disable-scroll-bars (frame)
   (modify-frame-parameters frame
@@ -6,9 +5,21 @@
                              (horizontal-scroll-bars . nil))))
 (add-hook 'after-make-frame-functions 'my/disable-scroll-bars)
 
+;; Close all open buffers
+(defun close-all-buffers ()
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+
+;; Disable braindead trash (no offence)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
+(setq ring-bell-function 'ignore)
+
+;; Only apply one theme at a time
+(defadvice load-theme (before theme-dont-propagate activate)
+  "Disable theme before loading new one."
+  (mapcar #'disable-theme custom-enabled-themes))
 
 ;; Other settings
 (setq-default tab-width 4)
@@ -57,6 +68,7 @@
 (setq use-package-always-ensure t)
 
 ;; Packages
+(use-package htmlize)
 (use-package haskell-mode
   :config
 	(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
@@ -68,7 +80,7 @@
 	(setq haskell-process-log t)
 
 	;; https://github.com/rexim/dotfiles/blob/master/.emacs.rc/haskell-mode-rc.el
-	(add-hook 'haskell-mode-hook 'haskell-indent-mode)
+	;(add-hook 'haskell-mode-hook 'haskell-indent-mode)
 	(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 	(add-hook 'haskell-mode-hook 'haskell-doc-mode)
   :bind (:map haskell-mode-map
@@ -111,8 +123,37 @@
         )
     )
 
+;; org-mode
+(use-package org
+  :config
+  ;; I know what i'm running (not really send help fast)
+  (setq org-confirm-babel-evaluate nil)
+
+  ;; Better source code window editing
+  (setq org-src-window-setup 'other-window)
+
+  ;; Highlight and indent source code blocks
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+  (setq org-edit-src-content-indentation 0)
+
+  (progn
+    (defun imalison:org-inline-css-hook (exporter)
+      "Insert custom inline css to automatically set the
+background of code to whatever theme I'm using's background"
+      (when (eq exporter 'html)
+        (let* ((my-pre-bg (face-background 'default))
+               (my-pre-fg (face-foreground 'default)))
+          (setq
+           org-html-head-extra
+           (concat
+            org-html-head-extra
+            (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                    my-pre-bg my-pre-fg))))))
+
+    (add-hook 'org-export-before-processing-hook 'imalison:org-inline-css-hook)))
+
 ;; org-mode packages
-(use-package htmlize)
 (use-package ob-go)
 (use-package ob-rust)
 (use-package org-bullets
@@ -196,8 +237,9 @@
 	("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-	(pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
+	(php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
+ '(pixel-scroll-mode t)
  '(pos-tip-background-color "#073642")
  '(pos-tip-foreground-color "#93a1a1")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
