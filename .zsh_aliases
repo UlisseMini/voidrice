@@ -28,7 +28,6 @@ alias gm="git merge"
 alias gu="git pull"
 
 # for note taking
-alias todo="$EDITOR ~/.todo.md"
 alias cheat="$EDITOR ~/.cheatsheet.md"
 
 # golang aliases
@@ -137,7 +136,7 @@ ghc() {
 	stack ghc -- --make -odir /tmp/ghc/ -hidir /tmp/ghc -o "$parent" "$@"
 }
 
-ghci() { stack ghci --ghci-options=-v0 }
+ghci() { stack ghci --ghci-options=-v0 $@ }
 
 cb() {
     out=$(stack --stack-yaml stack.yaml path --local-install-root)
