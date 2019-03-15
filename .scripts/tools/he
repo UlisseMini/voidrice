@@ -1,0 +1,12 @@
+#!/usr/bin/env expect
+
+log_user 0
+spawn ghci
+log_user 1
+
+# expect ".*>"
+send ":t putStrLn\n"
+
+send ":set prompt \𝝺\>\n"
+
+interact

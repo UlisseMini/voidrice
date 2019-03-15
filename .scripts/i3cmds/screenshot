@@ -1,5 +1,0 @@
-#!/bin/bash
-# IM A GENIUS REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
-# TODO: make dis open in the background
-# i think it wants a full pty so i'm using st 4 now
-st -e bash -lc "cd ~ && scrot -s"
