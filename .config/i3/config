@@ -330,10 +330,8 @@ bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec --no-startup-id xset dpms force off
 
 # For keyboards without a Print key
-# TODO Make this open in a hidden window
-bindsym $mod+a			exec --no-startup-id screenshot
+bindsym $mod+a			exec --no-startup-id maimpick
 bindsym $mod+Shift+a		exec --no-startup-id scrot
-
 
 # #---Extra XF86 Keys---# #
 # These are the extra media keys that some keyboards have.
