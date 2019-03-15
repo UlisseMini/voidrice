@@ -8,7 +8,7 @@
 stty -ixon # Disable ctrl-s and ctrl-q.
 HISTSIZE= HISTFILESIZE= # Infinite history.
 
-# function returns the current git branch if it exists otherwise.
+# function returns the current git branch if it exists, otherwise ""
 function branch() {
 	git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -24,9 +24,7 @@ if [ "$EUID" -ne 0 ]; then
 	p="$p\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"                 # ending $
 
 	export PS1="$p"
-
-	# unset p
-	p=""
+	unset p
 
 	# PS1 for root
 	else export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]ROOT\[$(tput setaf 2)\]@\[$(tput setaf 4)\]$(hostname | awk '{print toupper($0)}') \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
