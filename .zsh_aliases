@@ -138,11 +138,15 @@ ghc() {
 
 ghci() { stack ghci --ghci-options=-v0 $@ }
 
+# DON'T USE THIS USE STACK INSTALL AND STACK RUN!
 cb() {
     out=$(stack --stack-yaml stack.yaml path --local-install-root)
 	mkdir -p ./bin            || return
     stack build --force-dirty || return
-	mv $out/bin/* ./bin   || return
+	mv $out/bin/* ./bin       || return
+
+    echo "\nBuilt binary into ./bin"
+	ls -lah ./bin
 }
 
 # killall function, that ACTUALLY kills all
