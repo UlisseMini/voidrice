@@ -90,6 +90,7 @@
 (use-package markdown-mode )
 (use-package lua-mode)
 (use-package rust-mode)
+(use-package yaml-mode)
 (use-package go-mode
   :config
 	(add-hook 'before-save-hook 'gofmt-before-save)
