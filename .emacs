@@ -14,6 +14,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
+(scroll-bar-mode -1)
 (setq ring-bell-function 'ignore)
 
 ;; Only apply one theme at a time
