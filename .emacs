@@ -14,6 +14,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode 0)
+(scroll-bar-mode -1)
 (setq ring-bell-function 'ignore)
 
 ;; Only apply one theme at a time
@@ -25,7 +26,7 @@
 (setq-default tab-width 4)
 (setq backup-directory-alist `(("." . "~/.emacs_backup")))
 
-;; Add go/bin to the path
+;; Emacs $PATH
 (setenv "PATH" (concat (getenv "PATH") "~/go/bin"))
 (setq exec-path (append exec-path '("~/go/bin")))
 
@@ -113,17 +114,27 @@
 
 (use-package evil
   :config
+	;; evil packages
+	(use-package evil-leader
+	  :config
+	  (global-evil-leader-mode)
+	  (evil-leader/set-leader "<SPC>")
+	  (evil-leader/set-key
+		"e" 'find-file
+		"b" 'switch-to-buffer
+		"k" 'kill-buffer
+		)
+
+	  ;; Golang  bindings
+	  (evil-leader/set-key-for-mode 'go-mode
+		"gd" 'godef-jump
+		)
+	  )
+
 	;; Enable evil-mode
 	(evil-mode t)
 	(setq evil-want-C-i-jump nil)
-
-    ;; Remaps
-    (with-eval-after-load 'evil-maps
-        ;; TODO: Find a way to bind stuff to <SPACE>+prefix
-        (define-key evil-normal-state-map (kbd ",gd") 'godef-jump)
-        )
     )
-
 ;; org-mode
 (use-package org
   :config
@@ -238,7 +249,7 @@ background of code to whatever theme I'm using's background"
 	("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-	(php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
+	(magit php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(pixel-scroll-mode t)
  '(pos-tip-background-color "#073642")

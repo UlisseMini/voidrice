@@ -47,3 +47,9 @@
 		print $ fmap (+1) (Nothing)
 		-- (fmap does not pass Nothing to (+1) it just returns nothing
 	#+END_SRC
+
+* Maybe Monad
+  Maybe implements the Monad class and this lets us check maybe values very easily
+  #+BEGIN_SRC haskell
+  -- TODO: Add example
+  #+END_SRC
