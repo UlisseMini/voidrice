@@ -1,3 +1,5 @@
+" TODO: Detect makefile and if it exists use it instead.
+
 set expandtab
 
 func! BuildC()
@@ -16,4 +18,4 @@ func! RunC()
 endf
 
 nn <leader>gb :call BuildC()<cr>
-nn <leader>gr :call RunC()<cr>
+nn <leader>r :call RunC()<cr>
