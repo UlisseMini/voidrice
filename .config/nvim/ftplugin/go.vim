@@ -47,7 +47,7 @@ setlocal noexpandtab tabstop=4 shiftwidth=4
 
 " General
 nn <leader>gl :GoMetaLinter<cr>
-nn <leader>gb :GoBuild<cr>
+nn <leader>c :GoBuild<cr>
 nn <leader>r :GoRun<cr>
 nn <leader>gn :GoRename<cr>
 

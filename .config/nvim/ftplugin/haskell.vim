@@ -10,5 +10,5 @@ func! Ghci( ... )
 endf
 
 " mappings
-nn <leader>gb :!ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc %<cr>
+nn <leader>c :!ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc %<cr>
 nn <leader>r :call Ghci("%")<cr>

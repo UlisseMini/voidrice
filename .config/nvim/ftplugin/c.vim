@@ -17,5 +17,5 @@ func! RunC()
   exe "!./" . l:out
 endf
 
-nn <leader>gb :call BuildC()<cr>
+nn <leader>c :call BuildC()<cr>
 nn <leader>r :call RunC()<cr>
