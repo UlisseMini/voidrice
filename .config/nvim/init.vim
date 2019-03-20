@@ -35,6 +35,10 @@ Plug 'leafo/moonscript-vim'
 Plug 'UlisseMini/vim-pp' " Memes
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
+" Is markdown a language?
+Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_folding_disabled = 1
+
 " Tiny plugins
 Plug 'gcmt/taboo.vim'
 Plug 'ntpeters/vim-better-whitespace'
