@@ -162,7 +162,6 @@ let g:netrw_winsize = 25 " window size
 
 " General leader bindings more in ./ftplugin/*.vim{{{
 nn <leader>s :%s//g<left><left>
-nn <leader>c :noh<cr>:<bs>
 nn <leader>f :FZF<cr>
 nn <leader>= mzgg=G`z
 
@@ -176,6 +175,7 @@ nn <leader>e :Errors<cr>
 " buffer navigation
 nn <leader>l :ls<cr>:b<space>
 nn <leader>n :bn<cr>
+nn <leader>p :bp<cr>
 
 " open a terminal in a new tab, i use tmux so i don't use this
 " nn <C-t> :tabnew<cr>:te<cr>:<bs>i
