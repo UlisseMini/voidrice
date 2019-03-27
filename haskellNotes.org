@@ -25,6 +25,20 @@
 
 * Maybe
   ~maybe :: b -> (a -> b) -> Maybe a -> b~
+  #+BEGIN_SRC haskell
+  add :: Maybe Int -> Maybe Int -> Maybe Int
+  -- This is the same thing as
+  add mx my = do
+	x <- mx
+	y <- my
+	return (x + y)
+
+  -- This
+  add mx my =
+	  mx >>= (\x ->
+	  my >>= (\y ->
+	  return (x + y)))
+ #+END_SRC
   maybe takes a value to use when a is Nothing (a default) then checks
   if a is Not nothing, if it is not nothing it will call the function provided with
   the value, otherwise it returns the default value *without passing it through the function*.

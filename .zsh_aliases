@@ -19,7 +19,7 @@ alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 alias l="clear"
 
 alias s="fzf | xargs -r $EDITOR"
-alias dc="fzf | xargs -r cd"
+alias dc="find . -type d | fzf | xargs -r cd"
 
 # git
 alias gp="git push"

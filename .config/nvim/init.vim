@@ -38,6 +38,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Is markdown a language?
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_fenced_languages = ['go=go', 'hs=haskell', 'lua=lua', 'py=python', 'python=python', 'viml=vim', 'bash=sh', 'ini=dosini']
 
 " Tiny plugins
 Plug 'gcmt/taboo.vim'
@@ -46,7 +47,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 
 " ColorSchemes
-Plug 'UlisseMini/gruvbox'
+
 Plug 'romainl/flattened'
 call plug#end()
 
