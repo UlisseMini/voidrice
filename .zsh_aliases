@@ -128,27 +128,6 @@ ci() {
 	c $1 && mv ./${1:0:-2} ~/.local/bin
 }
 
-# Haskell smh
-ghc() {
-	# get the parent directory, this will be used for the output binary
-	parent=${PWD##*/}
-
-	stack ghc -- --make -odir /tmp/ghc/ -hidir /tmp/ghc -o "$parent" "$@"
-}
-
-ghci() { stack ghci --ghci-options=-v0 $@ }
-
-# DON'T USE THIS USE STACK INSTALL AND STACK RUN!
-cb() {
-    out=$(stack --stack-yaml stack.yaml path --local-install-root)
-	mkdir -p ./bin            || return
-    stack build --force-dirty || return
-	mv $out/bin/* ./bin       || return
-
-    echo "\nBuilt binary into ./bin"
-	ls -lah ./bin
-}
-
 # killall function, that ACTUALLY kills all
 ka() {
 	while true; do
