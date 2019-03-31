@@ -1,0 +1,37 @@
+#!/bin/bash
+if [ "$1" != "" ]; then
+    mkdir -p "$1" || exit 1
+    cd "$1"       || exit 1
+fi
+
+name=${PWD##*/}
+
+makefile=$(cat <<-EOF
+all: build
+
+build:
+\tgcc $name.c -o $name
+
+# build binaries for a bunch of different systems.
+release:
+\tgcc $name.c -o $name
+EOF
+)
+
+mainfile=$(cat <<-EOF
+#include <stdio.h>
+
+int main(int argc, char const* argv[]) {
+    /* Write code here */
+    return 0;
+}
+
+EOF
+)
+
+echo "Initializing c project \"$name\""
+echo -n "$makefile" > ./Makefile || exit 1
+echo "Created Makefile"
+
+echo -n "$mainfile" > ./$name.c  || exit 1
+echo "Created $name.c"
