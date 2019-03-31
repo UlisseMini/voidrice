@@ -265,11 +265,6 @@ augroup END
 nn ' `
 nn ` '
 
-" just in case ;)
-com W w
-com WQ wq
-com Q q
-
 " Shortcutting split navigation, saving a keypress:
 map <C-h> <C-w>h
 map <C-j> <C-w>j
@@ -281,21 +276,20 @@ tnoremap <C-j> <C-\><C-n><C-w>j
 tnoremap <C-k> <C-\><C-n><C-w>k
 tnoremap <C-l> <C-\><C-n><C-w>l
 
-" next error in quickfix
-nnoremap J :cn<cr>:<bs>
-
 " exit terminal mode with control e
 tnoremap <C-e> <C-\><C-n>
 
 " Bindings to make copying and pasting easier
 vnoremap <C-c> "+y
-inoremap <C-v> <esc>"+p
 
 " Center the screen when searching
 nnoremap n nzzzv
 
 " make Y non retarded
 nnoremap Y y$
+
+" insert semicolon at end of line with ;;
+ino ;; $;
 "}}}
 
 " Colorscheme{{{
