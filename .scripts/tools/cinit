@@ -18,7 +18,9 @@ run:
 
 # build binaries for a bunch of different systems.
 release:
-	gcc $name.c -o $name
+	mkdir -p ./bin
+	gcc $name.c -o bin/$name
+	x86_64-w64-mingw32-gcc $name.c -o bin/$name
 EOF
 )
 
