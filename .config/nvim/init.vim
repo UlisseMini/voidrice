@@ -289,6 +289,9 @@ nnoremap Y y$
 
 " insert semicolon at end of line with ;;
 ino ;; $;
+
+" say selected text with espeak
+vno pp :w !espeak &>/dev/null <cr>
 "}}}
 
 " Colorscheme{{{
