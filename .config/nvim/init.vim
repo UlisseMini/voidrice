@@ -293,6 +293,10 @@ ino ;; $;
 
 " say selected text with espeak
 vno pp :w !espeak &>/dev/null <cr>
+
+" save file with CTRL-S
+nno  :w<cr>
+ino  :w<cr>
 "}}}
 
 " Colorscheme{{{
