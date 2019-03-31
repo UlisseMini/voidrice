@@ -9,18 +9,20 @@ name=${PWD##*/}
 makefile=$(cat <<EOF
 all: build
 
+GCC_OPTIONS=-Wall
+
 build:
-	gcc $name.c -o $name
+	gcc \$(GCC_OPTIONS) $name.c -o $name
 
 run:
-	@gcc $name.c -o $name
+	@gcc \$(GCC_OPTIONS) $name.c -o $name
 	@exec ./$name
 
 # build binaries for a bunch of different systems.
 release:
 	mkdir -p ./bin
-	gcc $name.c -o bin/$name
-	x86_64-w64-mingw32-gcc $name.c -o bin/$name
+	gcc \$(GCC_OPTIONS) $name.c -o bin/$name
+	x86_64-w64-mingw32-gcc \$(GCC_OPTIONS) $name.c -o bin/$name
 EOF
 )
 
@@ -36,8 +38,13 @@ EOF
 )
 
 echo "Initializing c project \"$name\""
-echo -n "$makefile" > ./Makefile || exit 1
-echo "Created Makefile"
 
-echo -n "$mainfile" > ./$name.c  || exit 1
-echo "Created $name.c"
+if [ ! -f Makefile ]; then
+    echo -n "$makefile" > ./Makefile || exit 1
+    echo "Created Makefile"
+fi
+
+if [ ! -f "$name.c" ]; then
+    echo -n "$mainfile" > ./$name.c  || exit 1
+    echo "Created $name.c"
+fi

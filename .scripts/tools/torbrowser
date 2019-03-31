@@ -3,6 +3,11 @@
 # start tor if it is not already running
 pidof tor &>/dev/null || sudo systemctl start tor
 
+# if the $tor_proxy variable does not exist make a best guess
+if [[ "$tor_proxy" -eq "" ]]; then
+    export tor_proxy="socks5://127.0.0.1:9050"
+fi
+
 if [[ $BROWSER -eq "google-chrome-stable" ]]; then
     # If we are running chrome pass the proxy as a commandline argument
     $BROWSER --proxy-server="$tor_proxy"

@@ -9,9 +9,13 @@ export BROWSER="google-chrome-stable"
 export READER="zathura"
 export BIB="$HOME/Documents/LaTeX/uni.bib"
 export REFER="$HOME/.referbib"
+export tor_proxy="socks5://127.0.0.1:9050"
 
 # PIX is here I have LARBS keep icons. Subject to change, hence a variable.
 export PIX="$HOME/.scripts/pix"
+
+# add npm to the patha
+export PATH="~/.npm-global/bin:$PATH"
 
 # less/man colors
 export LESS=-R

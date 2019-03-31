@@ -24,16 +24,17 @@ Plug 'sheerun/vim-polyglot'
 "      \ }
 
 " Golang development (settings in ftplugin/go.vim)
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'sebdah/vim-delve', { 'for': 'go' }
+Plug 'fatih/vim-go',      { 'for': 'go' }
+Plug 'sebdah/vim-delve',  { 'for': 'go' }
 Plug 'buoto/gotests-vim', { 'for': 'go' }
-Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
+Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
 " Other languages
-Plug 'rhysd/vim-crystal', { 'for': 'crystal' }
+Plug 'rhysd/vim-crystal',  { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim'
 Plug 'UlisseMini/vim-pp' " Memes
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+"Plug 'ElmCast/elm-vim',    { 'for': 'elm' }
 
 " Is markdown a language?
 Plug 'plasticboy/vim-markdown'
