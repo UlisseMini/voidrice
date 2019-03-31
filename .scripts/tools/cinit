@@ -6,15 +6,19 @@ fi
 
 name=${PWD##*/}
 
-makefile=$(cat <<-EOF
+makefile=$(cat <<EOF
 all: build
 
 build:
-\tgcc $name.c -o $name
+	gcc $name.c -o $name
+
+run:
+	@gcc $name.c -o $name
+	@exec ./$name
 
 # build binaries for a bunch of different systems.
 release:
-\tgcc $name.c -o $name
+	gcc $name.c -o $name
 EOF
 )
 
@@ -22,7 +26,7 @@ mainfile=$(cat <<-EOF
 #include <stdio.h>
 
 int main(int argc, char const* argv[]) {
-    /* Write code here */
+    puts("Hello, world!");
     return 0;
 }
 
