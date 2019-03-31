@@ -28,7 +28,7 @@ alias gm="git merge"
 alias gu="git pull"
 
 # for note taking
-alias cheat="$EDITOR ~/.cheatsheet.md"
+    alias cheat="$EDITOR ~/.cheatsheet.md"
 
 # golang aliases
 alias gob="go build"
@@ -38,113 +38,6 @@ alias gop="cd $GOPATH/src/github.com/UlisseMini/"
 alias got="go test -race"
 alias goi="go install"
 alias gor="go run"
-
-cf() {
-	if [ "$1" == "" ]; then
-		echo "Usage: cf <file.vim>"
-		return
-	fi
-
-    $EDITOR ~/.config/nvim/ftplugin/$1
-}
-
-# create git repo using hub
-git_create() {
-	if [ "$1" == "" ]; then
-		echo "Usage: git_create <repo_name>"
-		return
-	fi
-
-	# initalize git repo if .git does not exist
-	if [ ! -f .git ]; then
-		git init
-		git add .
-		git commit -a -m "Initial commit"
-	fi
-
-	hub create "$1"
-	git remote set-url origin "https://github.com/UlisseMini/$1"
-	git push -u origin master
-}
-
-# Build and compress binaries
-gocompress() {
-	out="${1:0:-3}"
-	if [[ "$GOOS" == "windows" ]]; then
-		out="$out.exe"
-	fi
-
-	go build -ldflags="-s -w" -o "$out" "$1"
-	upx --brute --best "$out"
-}
-
-# aliases for finding files
-alias locate="find . | grep -i"
-alias rlocate="sudo find / 2>/dev/null | grep -i"
-
-# editing
-alias v="$EDITOR"
-alias vi="$EDITOR"
-alias vim="$EDITOR"
-alias nvim="$EDITOR"
-
-# make directory then cd into it
-mc() {
-	mkdir -p $1 && \
-		cd $1
-}
-
-# make it easier to compile assembly progams
-# i use the extention .asm so i'll trim the last 4 chars.
-asm() {
-	local out="${1:0:-4}"
-
-	nasm -f elf64 "$1" -o $out.o && \
-		ld $out.o -o $out && \
-		rm $out.o
-}
-
-# compile nasm assembly with linker
-asmf() {
-	local out="${1:0:-4}"
-
-	nasm  -f elf64 "$1" -o $out.o && \
-		ld $out.o -o $out -lc --dynamic-linker /lib/ld-2.28.so && \
-		rm $out.o
-}
-
-# disassemble programs with gdb, kinda a hack -- idc
-disassemble() {
-	echo "quit" | gdb -q -ex "disassemble main" $1 | tail -n +2 | head -n -1
-}
-
-# make it easier to compile C programs
-c() {
-	gcc -Wall "$1" -o "${1:0:-2}"
-}
-
-# compile and install C program to path
-ci() {
-	c $1 && mv ./${1:0:-2} ~/.local/bin
-}
-
-# killall function, that ACTUALLY kills all
-ka() {
-	while true; do
-		# if killall fails then return
-		killall $@ 2>/dev/null || break
-		sleep 0.1
-	done
-
-	# show the processes
-	ps awx | grep -v grep | grep "$1"
-}
-
-# brightness not working on my macbook, this is my workaround.
-brightness() {
-	sudo bash -c "echo '$1' > /sys/class/backlight/intel_backlight/brightness" &&
-		cat "/sys/class/backlight/intel_backlight/brightness"
-}
 
 # Youtube stuffs
 alias yt="youtube-dl --add-metadata -ic" # Download video link
@@ -158,3 +51,131 @@ alias diff="diff --color=auto"
 
 # Color cat - print file with syntax highlighting.
 alias ccat="highlight --out-format=ansi -t 4"
+
+cf() {
+    if [ "$1" == "" ]; then
+        echo "Usage: cf <file.vim>"
+        return
+    fi
+
+    $EDITOR ~/.config/nvim/ftplugin/$1
+}
+
+# create git repo using hub
+git_create() {
+    if [ "$1" == "" ]; then
+        echo "Usage: git_create <repo_name>"
+        return
+    fi
+
+    # initalize git repo if .git does not exist
+        if [ ! -f .git ]; then
+            git init
+            git add .
+            git commit -a -m "Initial commit"
+        fi
+
+        hub create "$1"
+        git remote set-url origin "https://github.com/UlisseMini/$1"
+        git push -u origin master
+    }
+
+# Build and compress binaries
+gocompress() {
+    out="${1:0:-3}"
+    if [[ "$GOOS" == "windows" ]]; then
+        out="$out.exe"
+    fi
+
+    go build -ldflags="-s -w" -o "$out" "$1"
+    upx --brute --best "$out"
+}
+
+# aliases for finding files
+    alias locate="find . | grep -i"
+    alias rlocate="sudo find / 2>/dev/null | grep -i"
+
+# editing
+alias v="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+alias nvim="$EDITOR"
+
+# make directory then cd into it
+    mc() {
+        mkdir -pv $1 && \
+            cd $1
+        }
+
+# make it easier to compile assembly progams
+# i use the extention .asm so i'll trim the last 4 chars.
+asm() {
+    local out="${1:0:-4}"
+
+    nasm -f elf64 "$1" -o $out.o && \
+        ld $out.o -o $out && \
+        rm $out.o
+    }
+
+# compile nasm assembly with linker
+asmf() {
+    local out="${1:0:-4}"
+
+    nasm  -f elf64 "$1" -o $out.o && \
+        ld $out.o -o $out -lc --dynamic-linker /lib/ld-2.28.so && \
+        rm $out.o
+    }
+
+# disassemble programs with gdb, kinda a hack -- idc
+disassemble() {
+    echo "quit" | gdb -q -ex "disassemble main" $1 | tail -n +2 | head -n -1
+}
+
+# make it easier to compile C programs
+c() {
+    gcc -Wall "$1" -o "${1:0:-2}"
+}
+
+# compile and install C program to path
+ci() {
+    c $1 && mv ./${1:0:-2} ~/.local/bin
+}
+
+# killall function, that ACTUALLY kills all
+ka() {
+    while true; do
+        # if killall fails then return
+            killall $@ 2>/dev/null || break
+            sleep 0.1
+        done
+
+    # show the processes
+    ps awx | grep -v grep | grep "$1"
+}
+
+# brightness not working on my macbook, this is my workaround.
+brightness() {
+    sudo bash -c "echo '$1' > /sys/class/backlight/intel_backlight/brightness" &&
+        cat "/sys/class/backlight/intel_backlight/brightness"
+    }
+
+tor_mode_on() {
+    sudo systemctl start tor
+    export   all_proxy="socks://127.0.0.1:9050"
+    export  http_proxy="socks://127.0.0.1:9050"
+    export https_proxy="socks://127.0.0.1:9050"
+    echo "Tor mode enabled"
+}
+
+tor_mode_off() {
+    sudo systemctl stop tor
+    export all_proxy=""
+    export http_proxy=""
+    export https_proxy=""
+    echo "Tor mode disabled"
+}
+
+# tor_mode, enable tor and set enviorment variables.
+tor_mode() {
+    pidof tor &>/dev/null && tor_mode_off || tor_mode_on
+}
