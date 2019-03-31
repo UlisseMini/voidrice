@@ -18,7 +18,7 @@ alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 alias l="clear"
 
-alias s="fzf | xargs -r $EDITOR"
+alias s="find . -type f | fzf | xargs -r $EDITOR"
 alias dc='cd $(find . -type d | fzf)'
 
 # git
@@ -161,16 +161,16 @@ brightness() {
 
 tor_mode_on() {
     sudo systemctl start tor
-    export   all_proxy="socks://127.0.0.1:9050"
-    export  http_proxy="socks://127.0.0.1:9050"
-    export https_proxy="socks://127.0.0.1:9050"
+    export   all_proxy=$tor_proxy
+    export  http_proxy=$tor_proxy
+    export https_proxy=$tor_proxy
     echo "Tor mode enabled"
 }
 
 tor_mode_off() {
     sudo systemctl stop tor
-    export all_proxy=""
-    export http_proxy=""
+    export   all_proxy=""
+    export  http_proxy=""
     export https_proxy=""
     echo "Tor mode disabled"
 }
