@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# start tor if it is not already running
+pidof tor &>/dev/null || sudo systemctl start tor
+
+if [[ $BROWSER -eq "google-chrome-stable" ]]; then
+    # If we are running chrome pass the proxy as a commandline argument
+    $BROWSER --proxy-server="$tor_proxy"
+else
+    # otherwise set all_proxy and hope for the best
+    all_proxy=$tor_proxy $BROWSER
+fi
