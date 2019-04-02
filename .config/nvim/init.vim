@@ -110,6 +110,7 @@ set history=1000             " vim ex mode history
 set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 set copyindent               " copy existing indentation
 set linebreak
+set number relativenumber
 
 command Nm set number! relativenumber!
 
@@ -271,10 +272,10 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
-tnoremap <C-h> <C-\><C-n><C-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+tnoremap <C-w><C-h> <C-\><C-n><C-w>h
+tnoremap <C-w><C-j> <C-\><C-n><C-w>j
+tnoremap <C-w><C-k> <C-\><C-n><C-w>k
+tnoremap <C-w><C-l> <C-\><C-n><C-w>l
 
 " exit terminal mode with control e
 tnoremap <C-e> <C-\><C-n>

@@ -1,5 +1,12 @@
 #!/bin/bash
 
+alias haskellbook="nohup zathura ~/haskell_book/haskell-programming-1.0RC3-screen.pdf &>/dev/null &"
+
+inst() {
+    cp "$1" ~/.local/bin &&
+        echo "Installed $1 to ~/.local/bin"
+}
+
 # general
 alias py="python"
 alias ipy="ipython"
