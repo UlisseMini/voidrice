@@ -1,7 +1,5 @@
 #!/bin/bash
 
-alias haskellbook="nohup zathura ~/haskell_book/haskell-programming-1.0RC3-screen.pdf &>/dev/null &"
-
 inst() {
     cp "$1" ~/.local/bin &&
         echo "Installed $1 to ~/.local/bin"
@@ -25,7 +23,7 @@ alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 alias l="clear"
 
-alias s="find . -type f | fzf | xargs -r $EDITOR"
+alias s="fzf | xargs -r $EDITOR"
 alias dc='cd $(find . -type d | fzf)'
 
 # git

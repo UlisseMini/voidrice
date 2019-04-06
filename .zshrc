@@ -97,3 +97,5 @@ fi
 
 # source my local configuration
 source ~/.zshrc.local
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

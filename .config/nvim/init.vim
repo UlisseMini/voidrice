@@ -165,6 +165,9 @@ let g:netrw_winsize = 25 " window size
 
 " General leader bindings more in ./ftplugin/*.vim{{{
 nn <leader>s :%s//g<left><left>
+nn <leader>g :%g/
+nn <leader>l :noh<cr>
+
 nn <leader>f :FZF<cr>
 nn <leader>= mzgg=G`z
 
@@ -176,7 +179,6 @@ vn <leader>g y:@"<cr>
 nn <leader>e :Errors<cr>
 
 " buffer navigation
-nn <leader>l :ls<cr>:b<space>
 nn <leader>n :bn<cr>
 nn <leader>p :bp<cr>
 
@@ -289,8 +291,8 @@ nnoremap n nzzzv
 " make Y non retarded
 nnoremap Y y$
 
-" insert semicolon at end of line with ;;
-ino ;; $;
+" go to end of line
+ino ;; $
 
 " say selected text with espeak
 vno pp :w !espeak &>/dev/null <cr>
