@@ -25,6 +25,7 @@ alias l="clear"
 
 alias s="fzf | xargs -r $EDITOR"
 alias dc='cd $(zcat ~/.dirs | fzf | sed "s|~|/home/$USER|g")'
+alias updatedb='find ~/ -type d -not -path '*/\.*' | sed "s|/home/peep|~|g" | gzip -9 -c > ~/.dirs'
 
 # git
 alias gp="git push"
@@ -95,10 +96,6 @@ gocompress() {
     go build -ldflags="-s -w" -o "$out" "$1"
     upx --brute --best "$out"
 }
-
-# aliases for finding files
-    alias locate="find . | grep -i"
-    alias rlocate="sudo find / 2>/dev/null | grep -i"
 
 # editing
 alias v="$EDITOR"
