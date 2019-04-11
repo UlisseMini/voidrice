@@ -19,7 +19,7 @@ alias update="sudo pacman -Syu"
 alias sv="sudoedit"
 alias cr="crystal"
 alias rm="rm -I"
-alias ud="pushd ~/ && git commit -a -m 'update dotfiles' && git push && popd"
+alias ud="pushd ~/ &>/dev/null && git commit -a -m 'update dotfiles' && git push && popd"
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 alias l="clear"
 
