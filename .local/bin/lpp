@@ -1,0 +1,35 @@
+#!/usr/bin/env lua
+-- Modified version of http://lua-users.org/wiki/SimpleLuaPreprocessor
+
+local chunk = setmetatable({}, { __index = table })
+
+-- Python style % string formatting.
+getmetatable('').__mod = function(s, t)
+  if     t == nil then           return s
+  elseif type(t) == 'table' then return s:format( table.unpack(t) )
+  else                           return s:format(t)
+  end
+end
+
+for line in io.stdin:lines() do
+  if line:find('^#') then
+    chunk:insert (line:sub(2) .. '\n')
+  else
+    local last = 1
+    for text, expr, index in line:gmatch '(.-)$(%b())()' do
+      last = index
+      if text ~= '' then
+        chunk:insert ('io.write %q\n' % text)
+      end
+
+      -- () is not removed from $() so
+      -- we don't need it here.
+      chunk:insert ('io.write%s\n' % expr)
+    end
+    -- From what i can see, just prints '\n' might do
+    -- something else in other cases though.
+    chunk:insert ('io.write %q\n' % (line:sub(last) .. '\n'))
+  end
+end
+
+assert (load (chunk:concat())) ()
