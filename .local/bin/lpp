@@ -5,7 +5,7 @@ local chunk = setmetatable({}, { __index = table })
 
 -- Python style % string formatting.
 getmetatable('').__mod = function(s, t)
-  if     t == nil then           return s
+  if           t == nil     then return s
   elseif type(t) == 'table' then return s:format( table.unpack(t) )
   else                           return s:format(t)
   end
