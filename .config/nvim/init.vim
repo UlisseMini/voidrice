@@ -77,7 +77,7 @@ command! Fmt call LanguageClient#textDocument_formatting()
 "}}}
 
 " rust{{{
-let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 0
 "}}}
 
 " Make deoplete load on startup
