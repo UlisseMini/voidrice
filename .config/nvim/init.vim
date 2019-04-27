@@ -55,6 +55,7 @@ call plug#end()
 " syntastic{{{
 let g:syntastic_go_checkers = ['gofmt', "go"]
 let g:syntastic_crystal_checkers = ['crystal']
+let g:syntastic_enable_racket_racket_checker = 0
 
 let g:syntastic_loc_list_height=3
 
@@ -68,7 +69,7 @@ let g:syntastic_always_populate_loc_list = 1
 " detected, but not opened automatically. >
 let g:syntastic_auto_loc_list            = 2
 
-let g:syntastic_check_on_wq              = 1
+let g:syntastic_check_on_wq              = 0
 "}}}
 
 " LanguageClient {{{
@@ -290,9 +291,6 @@ nnoremap n nzzzv
 
 " make Y non retarded
 nnoremap Y y$
-
-" go to end of line
-ino ;; $
 
 " say selected text with espeak
 vno pp :w !espeak &>/dev/null <cr>

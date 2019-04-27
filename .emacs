@@ -249,7 +249,7 @@ background of code to whatever theme I'm using's background"
 	("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-	(magit php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
+	(euslisp-mode magit php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(pixel-scroll-mode t)
  '(pos-tip-background-color "#073642")

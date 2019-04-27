@@ -2,7 +2,7 @@
 # Profile file. Runs on login.
 
 # Adds `~/.scripts` and all subdirectories to $PATH
-export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH"
+export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH:$HOME/.cargo/bin"
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="google-chrome-stable"
@@ -34,3 +34,5 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # Switch escape and caps and use wal colors if tty:
 sudo -n loadkeys ~/.scripts/ttymaps.kmap 2>/dev/null
+
+export PATH="$HOME/.cargo/bin:$PATH"

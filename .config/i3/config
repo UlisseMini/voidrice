@@ -194,8 +194,8 @@ bindsym $mod+Shift+z		gaps outer current minus 5
 bindsym $mod+x			exec --no-startup-id lockscreen
 bindsym $mod+Shift+x		exec --no-startup-id prompt "Shutdown computer?" "$shutdown"
 
-#bindsym $mod+c
-bindsym $mod+Shift+c		exec --no-startup-id camtoggle
+bindsym $mod+c exec --no-startup-id ddspawn dropdowncalc
+#bindsym $mod+Shift+c		exec --no-startup-id camtoggle
 
 #bindsym $mod+v
 #bindsym $mod+Shift+v
@@ -206,8 +206,11 @@ bindsym $mod+Shift+b		floating toggle; sticky toggle; exec --no-startup-id botto
 bindsym $mod+n			exec $term -e newsboat && pkill -RTMIN+6 i3blocks
 bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id bottomright
 
-bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
-bindsym $mod+Shift+m		exec --no-startup-id lmc mute
+#bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
+#bindsym $mod+Shift+m		exec --no-startup-id lmc mute
+bindsym $mod+Shift+m		exec --no-startup-id pkill mpv
+bindsym $mod+m	        	exec --no-startup-id mpv ~/Music/playlist --shuffle --loop-playlist --volume 40
+
 
 # #---Workspace Bindings---# #
 bindsym $mod+Home		workspace $ws1
