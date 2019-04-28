@@ -209,8 +209,7 @@ bindsym $mod+Shift+n		floating toggle; sticky toggle; exec --no-startup-id botto
 #bindsym $mod+m 			exec --no-startup-id $term -e ncmpcpp
 #bindsym $mod+Shift+m		exec --no-startup-id lmc mute
 bindsym $mod+Shift+m		exec --no-startup-id pkill mpv
-bindsym $mod+m	        	exec --no-startup-id mpv ~/Music/playlist --shuffle --loop-playlist --volume 40
-
+bindsym $mod+m	        	exec --no-startup-id music
 
 # #---Workspace Bindings---# #
 bindsym $mod+Home		workspace $ws1

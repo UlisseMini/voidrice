@@ -10,7 +10,7 @@ func! RunGHC( ... )
 endf
 
 " mappings
-nn <leader>c :!ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc %<cr>
+nn <leader>b :!ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc %<cr>
 nn <leader>r :call RunGHC("%")<cr>
 
 " highlighting

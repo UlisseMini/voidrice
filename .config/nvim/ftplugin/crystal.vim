@@ -5,7 +5,7 @@
 set ts=2 sw=2 et
 
 " General
-nn <leader>c :!crystal build %<cr>
+nn <leader>b :!crystal build %<cr>
 nn <leader>r :!crystal run %<cr>
 
 " Navigation

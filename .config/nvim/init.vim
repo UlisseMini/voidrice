@@ -113,8 +113,6 @@ set copyindent               " copy existing indentation
 set linebreak
 set number relativenumber
 
-command Nm set number! relativenumber!
-
 " colors
 if has("termguicolors")
   set termguicolors
@@ -156,6 +154,7 @@ set foldmethod=manual
 " Splits open at the bottom and right
 set splitbelow splitright
 
+" Better ex mode completion
 set wildmenu
 
 " Tweaks for file browsing
@@ -168,6 +167,7 @@ let g:netrw_winsize = 25 " window size
 nn <leader>s :%s//g<left><left>
 nn <leader>g :%g/
 nn <leader>l :noh<cr>
+nn <leader>t :!ctags -R .<cr>
 
 nn <leader>f :FZF<cr>
 nn <leader>= mzgg=G`z
@@ -178,6 +178,7 @@ vn <leader>g y:@"<cr>
 
 " show syntastic errors
 nn <leader>e :Errors<cr>
+nn <leader>c :SyntasticCheck<cr>
 
 " buffer navigation
 nn <leader>n :bn<cr>
@@ -186,10 +187,12 @@ nn <leader>p :bp<cr>
 " open a terminal in a new tab, i use tmux so i don't use this
 " nn <C-t> :tabnew<cr>:te<cr>:<bs>i
 
-" show highlight group under cursor
+" Commands
 command Hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
       \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
+
+command Nm set number! relativenumber!
 
 " useful for view the full output of :highlight
 func TabMessage(cmd)
@@ -323,3 +326,6 @@ let g:clipboard = {
       \ }
 "}}}
 
+" Highlight places over 80 cols
+" This comment is very long, a bit too long lets make sure my vim highlights the part going over 80 cols.
+au BufEnter * match ErrorMsg '\%>80v.\+'
