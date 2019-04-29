@@ -5,7 +5,7 @@ set expandtab
 " let g:LanguageClient_serverCommands = { 'haskell': ['hie-wrapper'] }
 
 func! RunGHC( ... )
-    exe "sp term://runghc " . shellescape( expand( join(a:000) ) ) . " --ghci-options=-v0"
+    exe "25sp term://runghc " . shellescape(expand(join(a:000))) . " --ghci-options=-v0"
     norm! A
 endf
 
