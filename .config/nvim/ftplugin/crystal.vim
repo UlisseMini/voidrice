@@ -6,7 +6,7 @@ set ts=2 sw=2 et
 
 " General
 nn <leader>b :!crystal build %<cr>
-nn <leader>r :!crystal run %<cr>
+nn <leader>r :!crystal run --no-color %<cr>
 
 " Navigation
 nn <leader>gh :CrystalHierarchy<space>

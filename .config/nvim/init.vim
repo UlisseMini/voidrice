@@ -325,7 +325,3 @@ let g:clipboard = {
       \   'cache_enabled': 1,
       \ }
 "}}}
-
-" Highlight places over 80 cols
-" This comment is very long, a bit too long lets make sure my vim highlights the part going over 80 cols.
-au BufEnter * match ErrorMsg '\%>80v.\+'
