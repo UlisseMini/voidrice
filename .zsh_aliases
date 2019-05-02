@@ -25,7 +25,7 @@ alias l="clear"
 
 function s() { fzf $@ | xargs -r $EDITOR }
 alias dc='cd $(zcat ~/.dirs | fzf | sed "s|~|/home/$USER|g")'
-alias updatedb='find ~/ -type d -not -path "*/\.*" | sed "s|/home/peep|~|g" | gzip -9 -c > ~/.dirs'
+alias updatedb='find / -type d -not -path "*/\.*" | sed "s|/home/peep|~|g" | gzip -9 -c > ~/.dirs'
 
 # git
 alias gp="git push"
@@ -135,12 +135,6 @@ ka() {
     # show the processes
     ps awx | grep -v grep | grep "$1"
 }
-
-# brightness not working on my macbook, this is my workaround.
-brightness() {
-    sudo bash -c "echo '$1' > /sys/class/backlight/intel_backlight/brightness" &&
-        cat "/sys/class/backlight/intel_backlight/brightness"
-    }
 
 tor_mode_on() {
     sudo systemctl start tor

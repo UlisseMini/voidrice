@@ -29,6 +29,11 @@ Plug 'sebdah/vim-delve',  { 'for': 'go' }
 Plug 'buoto/gotests-vim', { 'for': 'go' }
 Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
+" Elixir
+Plug 'mhinz/vim-mix-format'
+Plug 'elixir-editors/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+
 " Other languages
 Plug 'rhysd/vim-crystal',  { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim'
@@ -50,12 +55,15 @@ Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 " ColorSchemes
 
 Plug 'romainl/flattened'
+Plug 'morhetz/gruvbox'
 call plug#end()
 
 " syntastic{{{
 let g:syntastic_go_checkers = ['gofmt', "go"]
 let g:syntastic_crystal_checkers = ['crystal']
-let g:syntastic_enable_racket_racket_checker = 0
+
+let g:syntastic_elixir_checkers = ['elixir']
+let g:syntastic_enable_elixir_checker = 1
 
 let g:syntastic_loc_list_height=3
 
@@ -103,13 +111,14 @@ filetype plugin indent on
 syntax enable
 set encoding=utf-8
 set ruler showmode noshowcmd
-set autoread         " read changes outside of vim automatically
-set noerrorbells       " begone beeps
-set autowrite         " Automatically save before :next, :make etc.
-set hidden
+set autoread                 " read changes outside of vim automatically
+set noerrorbells             " begone beeps
+set autowrite                " Automatically save before :next, :make etc.
+set hidden                   " Non retarded buffers
 set history=1000             " vim ex mode history
 set fileformats=unix,dos,mac " Prefer Unix over Windows over OS 9 formats
 set copyindent               " copy existing indentation
+set nohlsearch               " Don't highlight all search matches.
 set linebreak
 set number relativenumber
 
@@ -167,7 +176,6 @@ let g:netrw_winsize = 25 " window size
 nn <leader>s :%s//g<left><left>
 nn <leader>g :%g/
 nn <leader>l :noh<cr>
-nn <leader>t :!ctags -R .<cr>
 
 nn <leader>f :FZF<cr>
 nn <leader>= mzgg=G`z
@@ -193,6 +201,8 @@ command Hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> tran
       \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
 
 command Nm set number! relativenumber!
+command Ctags !ctags -R .
+command Rc FZF ~/.config/nvim
 
 " useful for view the full output of :highlight
 func TabMessage(cmd)
@@ -238,12 +248,12 @@ au Filetype asm set syntax=nasm
 
 func ColorScheme()
   " use my terminals background colors not the colorschemes
-  hi! Normal       ctermbg=NONE guibg=NONE
+  " hi! Normal       ctermbg=NONE guibg=NONE
   hi! LineNr       ctermbg=NONE guibg=NONE
   hi! TabLine      ctermbg=NONE guibg=NONE
   hi! TabLineFill  ctermbg=NONE guibg=NONE
   hi! VertSplit    ctermbg=NONE guibg=NONE
-  hi! StatusLine   gui=NONE cterm=NONE
+  hi! StatusLine   cterm=NONE   gui=NONE
   hi! Folded       ctermbg=NONE guibg=NONE
 
   " Link some things
@@ -290,7 +300,7 @@ tnoremap <C-e> <C-\><C-n>
 vnoremap <C-c> "+y
 
 " Center the screen when searching
-nnoremap n nzzzv
+nnoremap n nzz
 
 " make Y non retarded
 nnoremap Y y$
@@ -308,7 +318,9 @@ set background=dark
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_italic             = 1
 
-colo flattened_dark
+" colo flattened_dark
+colo gruvbox
+hi! Operator gui=bold cterm=bold
 "}}}
 
 " Copy selected text to system clipboard using xclip{{{

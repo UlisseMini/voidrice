@@ -14,5 +14,6 @@ nn <leader>b :!ghc --make -odir /tmp/ghc/ -hidir /tmp/ghc %<cr>
 nn <leader>r :call RunGHC("%")<cr>
 
 " highlighting
-hi! link haskellChar Character
 hi! link Character Statement
+hi! link haskellIdentifier Identifier
+hi! link haskellType Type

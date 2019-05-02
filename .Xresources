@@ -3,10 +3,10 @@
 ! *.color0: #1d2021
 
 ! flattened_dark
-*.color0: #002b36
+! *.color0: #002b36
 
 ! gruvbox
-! *.color0: #262626
+*.color0: #262626
 
 ! everything else
 *.color1: #cc241d
