@@ -30,15 +30,16 @@ Plug 'buoto/gotests-vim', { 'for': 'go' }
 Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
 " Elixir
-Plug 'mhinz/vim-mix-format'
-Plug 'elixir-editors/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+Plug 'mhinz/vim-mix-format',      { 'for': 'elixir'}
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir'}
+Plug 'slashmili/alchemist.vim',   { 'for': 'elixir'}
 
 " Other languages
-Plug 'rhysd/vim-crystal',  { 'for': 'crystal' }
-Plug 'leafo/moonscript-vim'
+Plug 'rhysd/vim-crystal',    { 'for': 'crystal' }
+Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 Plug 'UlisseMini/vim-pp' " Memes
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim',  { 'for': 'rust' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 "Plug 'ElmCast/elm-vim',    { 'for': 'elm' }
 
 " Is markdown a language?

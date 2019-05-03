@@ -23,7 +23,7 @@ alias ud="pushd ~/ &>/dev/null && git commit -a -m 'update dotfiles' && git push
 alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 alias l="clear"
 
-function s() { fzf $@ | xargs -r $EDITOR }
+function s() { find $@ | fzf | xargs -r $EDITOR }
 alias dc='cd $(zcat ~/.dirs | fzf | sed "s|~|/home/$USER|g")'
 alias updatedb='find / -type d -not -path "*/\.*" | sed "s|/home/peep|~|g" | gzip -9 -c > ~/.dirs'
 
