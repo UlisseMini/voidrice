@@ -40,6 +40,7 @@ Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 Plug 'UlisseMini/vim-pp' " Memes
 Plug 'rust-lang/rust.vim',  { 'for': 'rust' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'ElmCast/elm-vim',    { 'for': 'elm' }
 
 " Is markdown a language?

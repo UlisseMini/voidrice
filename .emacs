@@ -69,6 +69,8 @@
 (setq use-package-always-ensure t)
 
 ;; Packages
+(use-package slime)
+(use-package gruvbox-theme)
 (use-package htmlize)
 (use-package haskell-mode
   :config
@@ -197,7 +199,7 @@ background of code to whatever theme I'm using's background"
  '(custom-enabled-themes (quote (gruber-darker)))
  '(custom-safe-themes
    (quote
-	("fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "47ec21abaa6642fefec1b7ace282221574c2dd7ef7715c099af5629926eb4fd7" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
+	("8f97d5ec8a774485296e366fdde6ff5589cf9e319a584b845b6f7fa788c9fa9a" "b583823b9ee1573074e7cbfd63623fe844030d911e9279a7c8a5d16de7df0ed0" "585942bb24cab2d4b2f74977ac3ba6ddbd888e3776b9d2f993c5704aa8bb4739" "a22f40b63f9bc0a69ebc8ba4fbc6b452a4e3f84b80590ba0a92b4ff599e53ad0" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "47ec21abaa6642fefec1b7ace282221574c2dd7ef7715c099af5629926eb4fd7" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(fci-rule-color "#073642")
  '(frame-brackground-mode (quote dark))
  '(highlight-changes-colors (quote ("#d33682" "#6c71c4")))
@@ -249,7 +251,7 @@ background of code to whatever theme I'm using's background"
 	("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-	(euslisp-mode magit php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
+	(slime gruvbox-theme euslisp-mode magit php-mode pacmacs htmlize markdown-mode flycheck evil-leader rust-mode ob-rust ob-ruby ob-go org-bullets go-autocomplete auto-complete fzf haskell-snippets helm use-package ## lua-mode go-mode haskell-mode gruber-darker-theme evil-visual-mark-mode)))
  '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e")))
  '(pixel-scroll-mode t)
  '(pos-tip-background-color "#073642")
