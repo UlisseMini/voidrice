@@ -34,13 +34,16 @@ Plug 'mhinz/vim-mix-format',      { 'for': 'elixir'}
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir'}
 Plug 'slashmili/alchemist.vim',   { 'for': 'elixir'}
 
+" Lisp
+Plug 'kovisoft/slimv',       { 'for': 'lisp'}
+Plug 'bhurlow/vim-parinfer', { 'for': 'lisp'}
+
 " Other languages
 Plug 'rhysd/vim-crystal',    { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim', { 'for': 'moon' }
-Plug 'UlisseMini/vim-pp' " Memes
+Plug 'UlisseMini/vim-pp'
 Plug 'rust-lang/rust.vim',  { 'for': 'rust' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'junegunn/rainbow_parentheses.vim'
 "Plug 'ElmCast/elm-vim',    { 'for': 'elm' }
 
 " Is markdown a language?
@@ -247,6 +250,8 @@ nn <leader>gf :call ToggleIfErr()<cr>:<bs>
 " AutoCmd{{{
 " for some reason asm.vim in ./ftplugin was not working
 au Filetype asm set syntax=nasm
+au BufRead,BufNewFile *.cl  set filetype=lisp
+au BufRead,BufNewFile *.zsp set filetype=clojure
 
 func ColorScheme()
   " use my terminals background colors not the colorschemes

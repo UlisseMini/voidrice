@@ -8,6 +8,7 @@ inst() {
 # general
 alias py="python"
 alias ipy="ipython"
+alias lisp="rlwrap sbcl --noinform"
 alias tm="tmux"
 alias i3restart="killall -2 i3"
 alias crfmt="crystal tool format"
@@ -20,7 +21,6 @@ alias sv="sudoedit"
 alias cr="crystal"
 alias rm="rm -I"
 alias ud="pushd ~/ &>/dev/null && git commit -a -m 'update dotfiles' && git push && popd"
-alias gruv="pushd ~/.config/nvim/plugged/gruvbox/"
 alias l="clear"
 
 function s() { find $@ | fzf | xargs -r $EDITOR }
@@ -34,7 +34,7 @@ alias gm="git merge"
 alias gu="git pull"
 
 # for note taking
-    alias cheat="$EDITOR ~/.cheatsheet.md"
+alias cheat="$EDITOR ~/.cheatsheet.md"
 
 # golang aliases
 alias gob="go build"
@@ -59,7 +59,7 @@ alias diff="diff --color=auto"
 alias ccat="highlight --out-format=ansi -t 4"
 
 cf() {
-    if [ "$1" == "" ]; then
+    if [[ "$1" == "" ]]; then
         echo "Usage: cf <file.vim>"
         return
     fi
