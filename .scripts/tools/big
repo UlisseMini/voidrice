@@ -1,0 +1,5 @@
+#!/bin/bash
+
+du -h $@ 2>/dev/null         \
+    | grep -P '^\d*\.?\d*+G' \
+    | sort -h
