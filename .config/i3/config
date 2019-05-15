@@ -138,7 +138,7 @@ bindsym $mod+Shift+w		exec --no-startup-id $BROWSER
 bindsym $mod+e			exec --no-startup-id emacsclient -a "" -c
 bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
 
-bindsym $mod+r 			exec zathura ~/haskell_book/haskell-programming-1.0RC3-screen.pdf
+bindsym $mod+r 			exec BROWSER=surf rustup doc --book
 bindsym $mod+Shift+r		exec --no-startup-id winresize
 
 bindsym $mod+t			split toggle

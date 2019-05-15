@@ -42,7 +42,9 @@ Plug 'bhurlow/vim-parinfer', { 'for': 'lisp'}
 Plug 'rhysd/vim-crystal',    { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim', { 'for': 'moon' }
 Plug 'UlisseMini/vim-pp'
-Plug 'rust-lang/rust.vim',  { 'for': 'rust' }
+Plug 'rust-lang/rust.vim',   { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 "Plug 'ElmCast/elm-vim',    { 'for': 'elm' }
 
@@ -88,10 +90,6 @@ let g:syntastic_check_on_wq              = 0
 " LanguageClient {{{
 let g:LanguageClient_settingsPath=expand("~/.config/nvim/languageClient.json")
 command! Fmt call LanguageClient#textDocument_formatting()
-"}}}
-
-" rust{{{
-let g:rustfmt_autosave = 0
 "}}}
 
 " Make deoplete load on startup
@@ -275,7 +273,7 @@ au TermOpen * setlocal nonumber norelativenumber noruler noshowmode
 au TermClose * setlocal showmode
 
 " Disable auto commenting
-au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Hide QFix buffer (quickfix)
 augroup QFix
