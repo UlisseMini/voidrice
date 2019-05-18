@@ -5,6 +5,20 @@ inst() {
         echo "Installed $1 to ~/.local/bin"
 }
 
+# execute 'find' and only output binary executeables.
+function find_binaries() {
+    find $@ -type f -executable -exec file -i '{}' \; \
+        | grep 'x-executable; charset=binary'         \
+        | cut -d: -f 1
+}
+
+# edit script in $PATH
+es() {
+    whereis $@               \
+        | awk '{ print $2 }' \
+        | xargs -r nvim
+}
+
 # general
 alias py="python"
 alias ipy="ipython"

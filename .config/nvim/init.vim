@@ -4,15 +4,12 @@
 "  \ V /| | | | | | | | | (__
 "   \_/ |_|_| |_| |_|_|  \___|
 
-" Plugins {{{
 call plug#begin('~/.config/nvim/plugged')
-" TODO Figure out how to make deoplete non slow.
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" General
-Plug 'tpope/vim-surround'
-Plug 'Shougo/neosnippet.vim'
-Plug 'UlisseMini/neosnippet-snippets'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                         General plugins                           "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-syntastic/syntastic'
 Plug 'sheerun/vim-polyglot'
@@ -23,35 +20,52 @@ Plug 'sheerun/vim-polyglot'
 "      \ 'do': './install.sh'
 "      \ }
 
-" Golang development (settings in ftplugin/go.vim)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                    tpope's gets his own section                   "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Golang development                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'fatih/vim-go',      { 'for': 'go' }
 Plug 'sebdah/vim-delve',  { 'for': 'go' }
 Plug 'buoto/gotests-vim', { 'for': 'go' }
 Plug 'zchee/deoplete-go', { 'for': 'go', 'do': 'make' }
 
-" Elixir
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Rust development                            "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Plug 'rust-lang/rust.vim',   { 'for': 'rust' }
+Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Elixir development                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'mhinz/vim-mix-format',      { 'for': 'elixir'}
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir'}
 Plug 'slashmili/alchemist.vim',   { 'for': 'elixir'}
 
-" Lisp
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Lisp development                            "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'kovisoft/slimv',       { 'for': 'lisp'}
 Plug 'bhurlow/vim-parinfer', { 'for': 'lisp'}
 
-" Other languages
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Other languages                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'rhysd/vim-crystal',    { 'for': 'crystal' }
 Plug 'leafo/moonscript-vim', { 'for': 'moon' }
-Plug 'UlisseMini/vim-pp'
-Plug 'rust-lang/rust.vim',   { 'for': 'rust' }
-Plug 'racer-rust/vim-racer', { 'for': 'rust' }
+Plug 'ElmCast/elm-vim',      { 'for': 'elm' }
 
-Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-"Plug 'ElmCast/elm-vim',    { 'for': 'elm' }
-
-" Is markdown a language?
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      Better markdown support                      "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_fenced_languages = ['go=go', 'hs=haskell', 'lua=lua', 'py=python', 'python=python', 'viml=vim', 'bash=sh', 'ini=dosini']
+let g:vim_markdown_fenced_languages = ['go=go', 'hs=haskell', 'lua=lua', 'py=python', 'python=python', 'viml=vim', 'bash=sh']
 
 " Tiny plugins
 Plug 'gcmt/taboo.vim'
@@ -59,8 +73,10 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 
-" ColorSchemes
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                          ColorSchemes                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 Plug 'romainl/flattened'
 Plug 'morhetz/gruvbox'
 call plug#end()
@@ -85,6 +101,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list            = 2
 
 let g:syntastic_check_on_wq              = 0
+let g:syntastic_check_on_open            = 0
+
 "}}}
 
 " LanguageClient {{{
@@ -99,17 +117,9 @@ set pumheight=10 " Completion window max size
 " change the deoplete delay before autocomplete
 let g:deoplete#auto_complete_delay = 0
 
-" Make neosnippet use tabs for expanding snippets
-imap <expr><TAB>
-      \ neosnippet#expandable_or_jumpable() ?
-      \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-      \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-"}}}
-
-" Basics{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                         Basic vim settings                        "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 filetype plugin indent on
 syntax enable
 set encoding=utf-8
@@ -142,7 +152,7 @@ set completeopt-=preview
 
 set numberwidth=1 " Use the least amount of space possible
 
-" Map leader, set to space
+" Set my leader key to space
 nnoremap <Space> <nop>
 let mapleader = " "
 
@@ -175,17 +185,15 @@ let g:netrw_liststyle=3  " tree view
 let g:netrw_winsize = 25 " window size
 "}}}
 
-" General leader bindings more in ./ftplugin/*.vim{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"            Leader bindings, more in ./ftplugin/*.vim              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nn <leader>s :%s//g<left><left>
 nn <leader>g :%g/
 nn <leader>l :noh<cr>
 
 nn <leader>f :FZF<cr>
 nn <leader>= mzgg=G`z
-
-" execute vimscript under cursor (register ")
-nn <leader>g Y:@"<cr>
-vn <leader>g y:@"<cr>
 
 " show syntastic errors
 nn <leader>e :Errors<cr>
@@ -194,9 +202,6 @@ nn <leader>c :SyntasticCheck<cr>
 " buffer navigation
 nn <leader>n :bn<cr>
 nn <leader>p :bp<cr>
-
-" open a terminal in a new tab, i use tmux so i don't use this
-" nn <C-t> :tabnew<cr>:te<cr>:<bs>i
 
 " Commands
 command Hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -221,51 +226,8 @@ func TabMessage(cmd)
   endif
 endf
 
-" toggle iferr block folding
-func ToggleIfErr()
-  if !exists("b:IfErr") || !b:IfErr
-    " set status
-    let b:IfErr = 1
-
-    " fold all iferr blocks
-    %g/if .*err != nil.*{\_.\{-\}}/.,/}/fo
-
-    " go to where we where before the regex
-    execute "normal \<C-o>"
-  else
-    " set status
-    let b:IfErr = 0
-
-    " unfold all
-    normal zR
-  endif
-endfu
-nn <leader>gf :call ToggleIfErr()<cr>:<bs>
-"}}}
-
-
-
-" AutoCmd{{{
-" for some reason asm.vim in ./ftplugin was not working
 au Filetype asm set syntax=nasm
 au BufRead,BufNewFile *.cl  set filetype=lisp
-au BufRead,BufNewFile *.zsp set filetype=clojure
-
-func ColorScheme()
-  " use my terminals background colors not the colorschemes
-  " hi! Normal       ctermbg=NONE guibg=NONE
-  hi! LineNr       ctermbg=NONE guibg=NONE
-  hi! TabLine      ctermbg=NONE guibg=NONE
-  hi! TabLineFill  ctermbg=NONE guibg=NONE
-  hi! VertSplit    ctermbg=NONE guibg=NONE
-  hi! StatusLine   cterm=NONE   gui=NONE
-  hi! Folded       ctermbg=NONE guibg=NONE
-
-  " Link some things
-  hi! link StatusLineNC StatusLine
-  hi! link vimfunction Function
-endf
-au ColorScheme * call ColorScheme()
 
 " Disable line numbers in the terminal
 au TermOpen * setlocal nonumber norelativenumber noruler noshowmode
@@ -282,53 +244,61 @@ augroup QFix
 augroup END
 "}}}
 
-" Remaps{{{
-" better marks
-nn ' `
-nn ` '
-
-" Shortcutting split navigation, saving a keypress:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           Remappings                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Shortcutting split navigation, saving a keypress.
 map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 
+" Make pane navigation work from inside the terminal emulator.
 tnoremap <C-w><C-h> <C-\><C-n><C-w>h
 tnoremap <C-w><C-j> <C-\><C-n><C-w>j
 tnoremap <C-w><C-k> <C-\><C-n><C-w>k
 tnoremap <C-w><C-l> <C-\><C-n><C-w>l
 
-" exit terminal mode with control e
+" Exit the terminal with control e
 tnoremap <C-e> <C-\><C-n>
 
-" Bindings to make copying and pasting easier
-vnoremap <C-c> "+y
-
 " Center the screen when searching
-nnoremap n nzz
+nn n nzz
 
 " make Y non retarded
-nnoremap Y y$
+nn Y y$
 
-" say selected text with espeak
-vno pp :w !espeak &>/dev/null <cr>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                     Colorscheme & Highlighting                    "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+func ColorScheme()
+  " use my terminal background colors not the colorschemes
+  hi! Normal       ctermbg=NONE guibg=NONE
+  hi! LineNr       ctermbg=NONE guibg=NONE
+  hi! TabLine      ctermbg=NONE guibg=NONE
+  hi! TabLineFill  ctermbg=NONE guibg=NONE
+  hi! VertSplit    ctermbg=NONE guibg=NONE
+  hi! StatusLine   cterm=NONE   gui=NONE
+  hi! Folded       ctermbg=NONE guibg=NONE
 
-" save file with CTRL-S
-nno  :w<cr>
-ino  :w<cr>
-"}}}
+  " Link some things
+  hi! link StatusLineNC StatusLine
+  hi! link vimfunction Function
+endf
+au ColorScheme * call ColorScheme()
 
-" Colorscheme{{{
 set background=dark
 let g:gruvbox_italicize_comments = 1
 let g:gruvbox_italic             = 1
 
-" colo flattened_dark
 colo gruvbox
 hi! Operator gui=bold cterm=bold
-"}}}
 
-" Copy selected text to system clipboard using xclip{{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                Copy and paste to the system clipboard             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap <C-c> "+y
+
 let g:clipboard = {
       \   'name': 'xclip',
       \   'copy': {

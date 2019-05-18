@@ -49,16 +49,8 @@ for_window [instance="dropdowncalc"] border pixel 2
 for_window [instance="dropdowncalc"] sticky enable
 
 # #---Starting External Scripts---# #
-# Setting the background:
-exec --no-startup-id feh --bg-scale ~/.config/wall.png
-# Starts dunst for notifications:
-exec --no-startup-id dunst
 # Composite manager:
 exec --no-startup-id xcompmgr
-# Runs the key remapping scripts
-exec --no-startup-id remaps
-# Unclutter makes the mouse invisible after a brief period
-exec --no-startup-id unclutter
 # Podboat automatic queue and download
 exec_always --no-startup-id podentr
 
@@ -138,7 +130,7 @@ bindsym $mod+Shift+w		exec --no-startup-id $BROWSER
 bindsym $mod+e			exec --no-startup-id emacsclient -a "" -c
 bindsym $mod+Shift+e		exec --no-startup-id tutorialvids
 
-bindsym $mod+r 			exec BROWSER=surf rustup doc --book
+bindsym $mod+r 			exec books
 bindsym $mod+Shift+r		exec --no-startup-id winresize
 
 bindsym $mod+t			split toggle

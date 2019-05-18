@@ -34,3 +34,7 @@ if [ -f '/home/peep/google-cloud-sdk/path.zsh.inc' ]; then . '/home/peep/google-
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/peep/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/peep/google-cloud-sdk/completion.zsh.inc'; fi
+
+export CLOUD_HOST="uli.zapto.org"
+export CLOUD_USER="peep"
+export RUSTC_WRAPPER="sccache"

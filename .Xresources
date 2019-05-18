@@ -6,7 +6,8 @@
 ! *.color0: #002b36
 
 ! gruvbox
-*.color0: #262626
+! *.color0: #262626
+*.color0: #000000
 
 ! everything else
 *.color1: #cc241d
