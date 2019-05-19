@@ -4,7 +4,7 @@
 # Adds `~/.scripts` and all subdirectories to $PATH
 export PATH="$(du $HOME/.scripts/ | cut -f2 | tr '\n' ':')$PATH:$HOME/.cargo/bin"
 export EDITOR="nvim"
-export TERMINAL="st"
+export TERMINAL="alacritty"
 export BROWSER="google-chrome-stable"
 export READER="zathura"
 export BIB="$HOME/Documents/LaTeX/uni.bib"
