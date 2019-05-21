@@ -9,7 +9,7 @@ xset r rate 300 50
 setxkbmap -option caps:escape
 
 # set the background
-feh --bg-scale ~/.config/wall.png
+feh --bg-center ~/.config/wall.png
 
 # Unclutter makes the mouse invisible after a brief period
 unclutter &
@@ -17,7 +17,11 @@ unclutter &
 # Start dunst for notifications:
 dunst &
 
+# start the Simple X Hotkey Daemon
+sxhkd &
+
 # run the window manager
 # exec i3
-# exec dwm
+# make -C /home/peep/system/dwm
+# exec /home/peep/system/dwm/dwm
 exec xmonad
